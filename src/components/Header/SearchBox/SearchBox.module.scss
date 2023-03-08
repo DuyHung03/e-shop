@@ -1,0 +1,45 @@
+.wrapper {
+    width: 416px;
+    display: flex;
+
+    .search {
+        position: relative;
+
+        input {
+            width: 380px;
+            height: 40px;
+            padding: 04px 16px;
+            border: none;
+            outline: none;
+            background-color: #bad7e9;
+            font-size: 16px;
+            font-weight: 500;
+            opacity: 0.8;
+            border-radius: 40px;
+            border: 1px solid transparent;
+            transition: 0.2s;
+        }
+
+        input:focus {
+            opacity: 1;
+            border: 1px solid #ccc;
+        }
+
+        .search-button {
+            position: absolute;
+            line-height: 3.1;
+            right: 0;
+            padding: 0 24px;
+            border: none;
+            color: #000;
+            background-color: transparent;
+            opacity: 0.6;
+            cursor: pointer;
+            border-left: 1px solid #ccc;
+        }
+
+        .search-button:hover {
+            opacity: 1;
+        }
+    }
+}

@@ -1,0 +1,27 @@
+.wrapper {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+
+    a {
+        outline: none;
+        border: none;
+        background: transparent;
+        color: #fcffe7;
+        font-size: 24px;
+        padding: 16px 20px;
+        cursor: pointer;
+        border-radius: 50%;
+        opacity: 0.8;
+        transition: 0.2s;
+    }
+
+    a:hover {
+        opacity: 1;
+    }
+
+    a + a {
+        margin-left: 16px;
+    }
+}
