@@ -6,20 +6,26 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faMagnifyingGlass } from '@fortawesome/free-solid-svg-icons';
 import HeadlessTippy from '@tippyjs/react/headless';
 import Popper from '../../Popper/Popper';
+import SearchItem from './SearchItem/SearchItem';
 
 const cx = classNames.bind(styles);
 
 const SearchBox = () => {
     return (
-        <>
+        <div>
             <HeadlessTippy
+                interactive
+                // visible
+                placement="bottom-start"
                 render={(attrs) => (
                     <div
                         className="box"
                         tabIndex="-1"
                         {...attrs}
                     >
-                        <Popper></Popper>
+                        <Popper width={316}>
+                            <SearchItem />
+                        </Popper>
                     </div>
                 )}
             >
@@ -37,7 +43,7 @@ const SearchBox = () => {
                     </div>
                 </div>
             </HeadlessTippy>
-        </>
+        </div>
     );
 };
 

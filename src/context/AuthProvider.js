@@ -12,20 +12,18 @@ const AuthProvider = ({ children }) => {
     useEffect(() => {
         const unsubcribed = auth.onAuthStateChanged(
             (user) => {
-                if (user) {
-                    setLoading(false);
-                    setUser(user);
-                    navigate('/');
-                } else {
-                    setLoading(false);
-                    navigate('/login');
-                }
+                setUser(user);
+                setLoading(false);
+                navigate('/');
             },
         );
         return unsubcribed;
-    }, [navigate]);
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, []);
     return (
-        <AuthContext.Provider value={{ user }}>
+        <AuthContext.Provider
+            value={{ user, navigate, setUser }}
+        >
             {loading ? <Loading /> : children}
         </AuthContext.Provider>
     );

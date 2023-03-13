@@ -4,8 +4,15 @@ import classNames from 'classnames/bind';
 
 const cx = classNames.bind(styles);
 
-const Popper = ({ children }) => {
-    return <div className={cx('wrapper')}>{children}</div>;
+const Popper = ({ children, width }) => {
+    return (
+        <div
+            className={cx('wrapper')}
+            style={{ width: width }}
+        >
+            {children}
+        </div>
+    );
 };
 
 export default Popper;

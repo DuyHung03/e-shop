@@ -7,7 +7,9 @@ const cx = classNames.bind(styles);
 
 const Button = ({
     //*SIZE
-    //*STYLE
+    //*TYPES
+    actionType,
+    menuType,
     //*
     leftIcon,
     rightIcon,
@@ -26,6 +28,8 @@ const Button = ({
         {
             leftIcon,
             rightIcon,
+            actionType,
+            menuType,
         },
         className,
     );
@@ -35,8 +39,7 @@ const Button = ({
     if (to) {
         props.to = to;
         Btn = Link;
-    }
-    if (href) {
+    } else if (href) {
         props.href = href;
         Btn = 'a';
         props.target = target;

@@ -1,94 +1,45 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import styles from './Login.module.scss';
 import classNames from 'classnames/bind';
-import Icon from '../../components/Icon/Icon';
 import { Images } from '../../assets/images';
 import Button from '../../components/Button/Button';
-import { faRightToBracket } from '@fortawesome/free-solid-svg-icons';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
-    FacebookAuthProvider,
-    GoogleAuthProvider,
-    signInWithPopup,
-} from 'firebase/auth';
-import { auth } from '../../firebase/firebase';
+    faEye,
+    faRightToBracket,
+} from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { AppContext } from '../../context/AppProvider';
 
 const cx = classNames.bind(styles);
 
-const ggProvider = new GoogleAuthProvider();
-const fbProvider = new FacebookAuthProvider();
-
 const Login = () => {
-    const handleGoogleLogin = () => {
-        signInWithPopup(auth, ggProvider)
-            .then((result) => {
-                // const credential =
-                //     GoogleAuthProvider.credentialFromResult(
-                //         result,
-                //     );
-                // const token = credential.accessToken;
-                const user = result.user;
-                console.log(user);
-            })
-            .catch((error) => {
-                // Handle Errors here.
-                const errorCode = error.code;
-                const errorMessage = error.message;
-                // The email of the user's account used.
-                const email = error.customData.email;
-                // The AuthCredential type that was used.
-                // const credential =
-                //     GoogleAuthProvider.credentialFromError(
-                //         error,
-                //     );
-                // ...
-                console.log(
-                    'Error Code: ',
-                    errorCode,
-                    errorMessage,
-                    email,
-                    // credential,
-                );
-            });
-    };
-    const handleFacebookLogin = () => {
-        signInWithPopup(auth, fbProvider)
-            .then((result) => {
-                // const credential =
-                //     GoogleAuthProvider.credentialFromResult(
-                //         result,
-                //     );
-                // const token = credential.accessToken;
-                const user = result.user;
-                console.log(user);
-            })
-            .catch((error) => {
-                // Handle Errors here.
-                const errorCode = error.code;
-                const errorMessage = error.message;
-                // The email of the user's account used.
-                const email = error.customData.email;
-                // The AuthCredential type that was used.
-                // const credential =
-                //     GoogleAuthProvider.credentialFromError(
-                //         error,
-                //     );
-                // ...
-                console.log(
-                    'Error Code: ',
-                    errorCode,
-                    errorMessage,
-                    email,
-                    // credential,
-                );
-            });
-    };
+    const { handleGoogleLogin, handleFacebookLogin } =
+        useContext(AppContext);
+
+    const handleShowPassword = () => {};
 
     return (
         <div className={cx('wrapper')}>
-            <div>
-                <input />
-                <input />
+            <div className={cx('form-login')}>
+                <label>
+                    Email:
+                    <input type="email" />
+                </label>
+                <label>
+                    Password:
+                    <span className={cx('password')}>
+                        <input
+                            id="password"
+                            type="password"
+                        />
+                        <Button
+                            onClick={handleShowPassword}
+                            className={cx('show-pw-btn')}
+                        >
+                            <FontAwesomeIcon icon={faEye} />
+                        </Button>
+                    </span>
+                </label>
                 <Button
                     leftIcon={
                         <FontAwesomeIcon
@@ -99,16 +50,30 @@ const Login = () => {
                     LogIn
                 </Button>
             </div>
-            <div>
-                <Button onClick={handleGoogleLogin}>
-                    <Icon src={Images.googleLogo.default}>
-                        Login with Google
-                    </Icon>
+            <div className={cx('others-login')}>
+                <Button
+                    onClick={handleGoogleLogin}
+                    leftIcon={
+                        <img
+                            src={Images.googleLogo.default}
+                            alt="gglogo"
+                        />
+                    }
+                >
+                    Login with Google
                 </Button>
-                <Button onClick={handleFacebookLogin}>
-                    <Icon src={Images.facebookLogo.default}>
-                        Login with Facebook
-                    </Icon>
+                <Button
+                    onClick={handleFacebookLogin}
+                    leftIcon={
+                        <img
+                            src={
+                                Images.facebookLogo.default
+                            }
+                            alt="fblogo"
+                        />
+                    }
+                >
+                    Login with Facebook
                 </Button>
             </div>
         </div>

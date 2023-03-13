@@ -4,12 +4,13 @@ import classNames from 'classnames/bind';
 
 import Button from '../../Button/Button';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faUser } from '@fortawesome/free-regular-svg-icons';
 import {
     faCartShopping,
     faRightToBracket,
 } from '@fortawesome/free-solid-svg-icons';
 import { AuthContext } from '../../../context/AuthProvider';
+import Menu from '../../Menu/Menu';
+import { Images } from '../../../assets/images';
 
 const cx = classNames.bind(styles);
 
@@ -18,12 +19,34 @@ const Actions = () => {
     return (
         <div className={cx('wrapper')}>
             {user ? (
-                <Button to="/user">
-                    <FontAwesomeIcon icon={faUser} />
-                </Button>
+                <Menu>
+                    <span>
+                        <Button
+                            className={cx('user-button')}
+                            rightIcon={
+                                <img
+                                    style={{
+                                        objectFit: 'cover',
+                                        objectPosition:
+                                            'contain',
+                                    }}
+                                    src={
+                                        !user.photoURL
+                                            ? Images.noUserImage
+                                            : user.photoURL
+                                    }
+                                    alt="user"
+                                />
+                            }
+                        >
+                            {user.displayName}
+                        </Button>
+                    </span>
+                </Menu>
             ) : (
                 <Button
                     className={cx('log-button')}
+                    actionType
                     leftIcon={
                         <FontAwesomeIcon
                             icon={faRightToBracket}
@@ -35,6 +58,8 @@ const Actions = () => {
                 </Button>
             )}
             <Button
+                className={cx('cart-button')}
+                actionType
                 to="/cart"
                 leftIcon={
                     <FontAwesomeIcon

@@ -27,8 +27,9 @@
 
         .search-button {
             position: absolute;
-            line-height: 3.1;
+            top: 50%;
             right: 0;
+            transform: translateY(-50%);
             padding: 0 24px;
             border: none;
             color: #000;

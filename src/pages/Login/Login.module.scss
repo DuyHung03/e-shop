@@ -1,6 +1,89 @@
 .wrapper {
+    height: 50%;
+    margin-top: 40px;
     display: flex;
-    justify-content: space-evenly;
+    justify-content: center;
     align-items: center;
     flex-direction: row;
+    flex-wrap: wrap;
+
+    .form-login {
+        width: 30%;
+        padding: 0 30px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        border-right: 1px solid #ddd;
+
+        label {
+            width: 300px;
+            text-align: start;
+            margin-bottom: 4px;
+            cursor: pointer;
+
+            input {
+                width: 100%;
+                padding: 8px 16px;
+                font-size: 16px;
+                border-radius: 16px;
+                margin-top: 8px;
+                margin-bottom: 16px;
+                border: 1px solid #ddd;
+                transition: 0.2s;
+            }
+            input:focus {
+                border: 1px solid #2b3467;
+            }
+        }
+
+        .password {
+            display: flex;
+            justify-content: space-between;
+            flex-direction: row;
+            position: relative;
+
+            .show-pw-btn {
+                width: 60px;
+                background-color: transparent;
+                margin: 0;
+                position: absolute;
+                right: 0;
+                top: 45%;
+                transform: translateY(-50%);
+            }
+        }
+
+        button {
+            display: flex;
+            justify-content: center;
+            width: 300px;
+            padding: 8px 16px;
+            border-radius: 16px;
+            font-size: 24px;
+            background-color: #2b3467;
+            color: #d3d6ce;
+        }
+        button:hover {
+            background-color: #d3d6ce;
+            color: #2b3467;
+        }
+    }
+
+    .others-login {
+        width: 30%;
+        padding: 0 30px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+
+        button {
+            width: 250px;
+            padding: 8px 16px;
+            border: 1px solid #ddd;
+            border-radius: 16px;
+            margin: 0 0 16px;
+        }
+    }
 }
