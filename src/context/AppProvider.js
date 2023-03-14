@@ -3,8 +3,14 @@ import {
     GoogleAuthProvider,
     signInWithPopup,
 } from 'firebase/auth';
-import React, { createContext } from 'react';
+import React, {
+    createContext,
+    useEffect,
+    useState,
+} from 'react';
 import { auth } from '../firebase/firebase';
+import useDebounce from '../hooks/useDebounce';
+import searchProduct from '../services/searchProduct';
 
 export const AppContext = createContext();
 
@@ -72,11 +78,56 @@ const AppProvider = ({ children }) => {
             });
     };
 
+    const [showResult, setShowResult] = useState(false);
+
+    const [searchValue, setSearchValue] = useState('');
+
+    const [searchResult, setSearchResult] = useState([]);
+
+    const debounce = useDebounce(searchValue, 500);
+
+    const handleInputValue = (e) => {
+        const searchValue = e.target.value;
+        setSearchValue(searchValue.trim());
+        setShowResult(true);
+        console.log(searchValue);
+    };
+
+    const handleHideResult = () => {
+        setShowResult(false);
+    };
+
+    const handleShowResult = () => {
+        setShowResult(true);
+    };
+
+    useEffect(() => {
+        if (!debounce.trim()) {
+            setSearchResult([]);
+            return;
+        }
+
+        const callAPI = async () => {
+            const res = await searchProduct(debounce);
+            console.log(res);
+            setSearchResult(res);
+        };
+
+        callAPI();
+    }, [debounce]);
+
     return (
         <AppContext.Provider
             value={{
                 handleFacebookLogin,
                 handleGoogleLogin,
+                handleHideResult,
+                handleShowResult,
+                handleInputValue,
+                showResult,
+                searchResult,
+                searchValue,
+                debounce,
             }}
         >
             {children}

@@ -4,11 +4,11 @@ import classNames from 'classnames/bind';
 
 const cx = classNames.bind(styles);
 
-const Popper = ({ children, width }) => {
+const Popper = ({ children, width, height }) => {
     return (
         <div
             className={cx('wrapper')}
-            style={{ width: width }}
+            style={{ width: width, height: height }}
         >
             {children}
         </div>

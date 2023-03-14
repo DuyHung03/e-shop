@@ -1,6 +1,7 @@
 import Cart from '../pages/Cart/Cart';
 import Home from '../pages/Home/Home';
 import Login from '../pages/Login/Login';
+import Product from '../pages/Product/Product';
 import Search from '../pages/Search/Search';
 import User from '../pages/User/User';
 
@@ -24,5 +25,9 @@ export const PublicRoutes = [
     {
         path: '/login',
         element: Login,
+    },
+    {
+        path: '/product',
+        element: Product,
     },
 ];
