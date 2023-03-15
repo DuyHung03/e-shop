@@ -6,6 +6,7 @@ import {
 import React, {
     createContext,
     useEffect,
+    useRef,
     useState,
 } from 'react';
 import { auth } from '../firebase/firebase';
@@ -84,12 +85,17 @@ const AppProvider = ({ children }) => {
 
     const [searchResult, setSearchResult] = useState([]);
 
+    const [loading, setLoading] = useState(true);
+
     const debounce = useDebounce(searchValue, 500);
+
+    const inputRef = useRef();
 
     const handleInputValue = (e) => {
         const searchValue = e.target.value;
-        setSearchValue(searchValue.trim());
-        setShowResult(true);
+        if (!searchValue.startsWith(' ')) {
+            setSearchValue(searchValue);
+        }
         console.log(searchValue);
     };
 
@@ -104,17 +110,28 @@ const AppProvider = ({ children }) => {
     useEffect(() => {
         if (!debounce.trim()) {
             setSearchResult([]);
+            setLoading(false);
             return;
         }
 
+        setLoading(true);
+
         const callAPI = async () => {
+            setLoading(true);
             const res = await searchProduct(debounce);
             console.log(res);
             setSearchResult(res);
+            setLoading(false);
         };
 
         callAPI();
     }, [debounce]);
+
+    const handleClearValue = () => {
+        setSearchValue('');
+        setSearchResult([]);
+        inputRef.current.focus();
+    };
 
     return (
         <AppContext.Provider
@@ -124,10 +141,14 @@ const AppProvider = ({ children }) => {
                 handleHideResult,
                 handleShowResult,
                 handleInputValue,
+                handleClearValue,
+                setSearchValue,
                 showResult,
                 searchResult,
                 searchValue,
                 debounce,
+                loading,
+                inputRef,
             }}
         >
             {children}

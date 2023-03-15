@@ -3,7 +3,11 @@ import classNames from 'classnames/bind';
 import styles from './SearchBox.module.scss';
 import Button from '../../Button/Button';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faMagnifyingGlass } from '@fortawesome/free-solid-svg-icons';
+import {
+    faMagnifyingGlass,
+    faSpinner,
+    faXmarkCircle,
+} from '@fortawesome/free-solid-svg-icons';
 import HeadlessTippy from '@tippyjs/react/headless';
 import Popper from '../../Popper/Popper';
 import SearchItem from './SearchItem/SearchItem';
@@ -19,7 +23,10 @@ const SearchBox = () => {
         handleHideResult,
         handleShowResult,
         handleInputValue,
+        handleClearValue,
         debounce,
+        loading,
+        inputRef,
     } = useContext(AppContext);
 
     return (
@@ -37,7 +44,7 @@ const SearchBox = () => {
                         tabIndex="-1"
                         {...attrs}
                     >
-                        {!searchResult.length ? (
+                        {!searchResult.length > 0 ? (
                             <Popper width={316}>
                                 <span>
                                     No products found "
@@ -47,7 +54,7 @@ const SearchBox = () => {
                         ) : (
                             <Popper
                                 width={316}
-                                height={370}
+                                maxHeight={390}
                             >
                                 {searchResult.map(
                                     (item) => (
@@ -71,14 +78,37 @@ const SearchBox = () => {
                 <div className={cx('wrapper')}>
                     <div className={cx('search')}>
                         <input
+                            ref={inputRef}
                             value={searchValue}
-                            placeholder="Search..."
+                            placeholder="Search product's name..."
                             onChange={handleInputValue}
                             onFocus={handleShowResult}
                         />
+                        {!!searchValue && (
+                            <button
+                                className={cx('clear')}
+                                onClick={handleClearValue}
+                            >
+                                <FontAwesomeIcon
+                                    icon={faXmarkCircle}
+                                />
+                            </button>
+                        )}
+                        {loading && (
+                            <button
+                                className={cx('loading')}
+                            >
+                                <FontAwesomeIcon
+                                    icon={faSpinner}
+                                />
+                            </button>
+                        )}
                         <Button
                             className={cx('search-button')}
                             to="/search"
+                            onMouseDown={(e) =>
+                                e.preventDefault()
+                            }
                         >
                             <FontAwesomeIcon
                                 icon={faMagnifyingGlass}

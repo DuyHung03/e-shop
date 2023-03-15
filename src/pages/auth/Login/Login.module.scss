@@ -44,6 +44,7 @@
             position: relative;
 
             .show-pw-btn {
+                display: inline-block;
                 width: 60px;
                 background-color: transparent;
                 margin: 0;
@@ -51,10 +52,23 @@
                 right: 0;
                 top: 45%;
                 transform: translateY(-50%);
+                color: #2b3467;
             }
         }
 
-        button {
+        .sign-up {
+            display: block;
+            float: left;
+            background-color: transparent;
+            color: #2b3467;
+            padding: 0;
+            margin-top: 16px;
+        }
+        .sign-up:hover {
+            color: #146291;
+        }
+
+        .login-btn {
             display: flex;
             justify-content: center;
             width: 300px;
@@ -64,7 +78,7 @@
             background-color: #2b3467;
             color: #d3d6ce;
         }
-        button:hover {
+        .login-btn:hover {
             background-color: #d3d6ce;
             color: #2b3467;
         }

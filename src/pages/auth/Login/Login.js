@@ -1,14 +1,14 @@
 import React, { useContext } from 'react';
 import styles from './Login.module.scss';
 import classNames from 'classnames/bind';
-import { Images } from '../../assets/images';
-import Button from '../../components/Button/Button';
+import { Images } from '../../../assets/images';
+import Button from '../../../components/Button/Button';
 import {
     faEye,
     faRightToBracket,
 } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { AppContext } from '../../context/AppProvider';
+import { AppContext } from '../../../context/AppProvider';
 
 const cx = classNames.bind(styles);
 
@@ -40,7 +40,9 @@ const Login = () => {
                         </Button>
                     </span>
                 </label>
+
                 <Button
+                    className={cx('login-btn')}
                     leftIcon={
                         <FontAwesomeIcon
                             icon={faRightToBracket}
@@ -49,6 +51,15 @@ const Login = () => {
                 >
                     LogIn
                 </Button>
+
+                <span>
+                    <Button
+                        to="/sign-up-form"
+                        className={cx('sign-up')}
+                    >
+                        Create new account
+                    </Button>
+                </span>
             </div>
             <div className={cx('others-login')}>
                 <Button

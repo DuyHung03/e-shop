@@ -11,6 +11,7 @@ import { auth } from '../../firebase/firebase';
 import styles from './Menu.module.scss';
 import classNames from 'classnames/bind';
 import { AuthContext } from '../../context/AuthProvider';
+import { AppContext } from '../../context/AppProvider';
 
 const cx = classNames.bind(styles);
 
@@ -18,10 +19,13 @@ const Menu = ({ children }) => {
     //*GET FNS FROM AUTHCONTEXT
     const { navigate, setUser } = useContext(AuthContext);
 
+    const { setSearchValue } = useContext(AppContext);
+
     const handleLogOut = () => {
         auth.signOut();
         navigate('/');
         setUser();
+        setSearchValue('');
         console.log('logout');
     };
 
