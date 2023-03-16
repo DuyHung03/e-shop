@@ -7,5 +7,20 @@
     .form-section {
         display: flex;
         flex-direction: column;
+
+        .sign-up-btn {
+            display: flex;
+            justify-content: center;
+            width: 300px;
+            padding: 8px 16px;
+            border-radius: 16px;
+            font-size: 24px;
+            background-color: #2b3467;
+            color: #d3d6ce;
+        }
+        .sign-up-btn:hover {
+            background-color: #d3d6ce;
+            color: #2b3467;
+        }
     }
 }

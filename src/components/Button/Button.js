@@ -14,6 +14,7 @@ const Button = ({
     leftIcon,
     rightIcon,
     className,
+    id,
     to = false,
     href = false,
     target,
@@ -46,7 +47,7 @@ const Button = ({
     }
 
     return (
-        <Btn className={classes} {...props}>
+        <Btn id={id} className={classes} {...props}>
             {leftIcon && (
                 <span className={cx('icon')}>
                     {leftIcon}
