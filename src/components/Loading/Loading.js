@@ -1,17 +1,14 @@
 import React from 'react';
+import styles from './Loading.module.scss';
+import classNames from 'classnames/bind';
+
+const cx = classNames.bind(styles);
 
 const Loading = () => {
     return (
-        <div
-            style={{
-                border: '16px solid #f3f3f3',
-                borderRadius: '50%',
-                borderTop: '16px solid #3498db',
-                width: '120px',
-                height: '120px',
-                animation: 'spin 2s linear infinite',
-            }}
-        ></div>
+        <div className={cx('wrapper')}>
+            <div className={cx('loading')}></div>
+        </div>
     );
 };
 

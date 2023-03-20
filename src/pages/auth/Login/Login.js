@@ -13,12 +13,19 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { AppContext } from '../../../context/AppProvider';
 import { signInWithEmailAndPassword } from 'firebase/auth';
 import { auth } from '../../../firebase/firebase';
+import { AuthContext } from '../../../context/AuthProvider';
+import ModalResetPassword from './ModalResetPassword/ModalResetPassword';
 
 const cx = classNames.bind(styles);
 
 const Login = () => {
-    const { handleGoogleLogin, handleFacebookLogin } =
-        useContext(AppContext);
+    const {
+        handleGoogleLogin,
+        handleFacebookLogin,
+        setIsOpenModal,
+    } = useContext(AppContext);
+
+    const { navigate } = useContext(AuthContext);
 
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
@@ -27,40 +34,42 @@ const Login = () => {
         const email = e.target.value;
         e.preventDefault();
         setEmail(validator.trim(email));
-        console.log(email);
     };
 
     const handlePassword = (e) => {
         const password = e.target.value;
         e.preventDefault();
         setPassword(validator.trim(password));
-        console.log(password);
     };
 
     const handlePasswordLogin = () => {
         signInWithEmailAndPassword(auth, email, password)
             .then((userCredential) => {
                 const user = userCredential.user;
+                if (user) {
+                    navigate('/');
+                }
                 console.log(user);
             })
             .catch((error) => {
                 alert(error);
+                console.log(error);
             });
     };
 
-    const handleShowPassword = () => {
-        const openEye = document.getElementById('show-pw');
-        const passwordInput =
-            document.getElementsByClassName();
-        console.log(openEye, passwordInput);
+    const handleOpenModalResetPassword = () => {
+        setIsOpenModal(true);
     };
+
+    const handleShowPassword = () => {};
 
     return (
         <div className={cx('wrapper')}>
-            <div className={cx('form-login')}>
+            <form className={cx('form-login')}>
                 <label>
                     Email:
                     <input
+                        required
                         type="email"
                         value={email}
                         onChange={handleEmail}
@@ -70,7 +79,7 @@ const Login = () => {
                     Password:
                     <span className={cx('password')}>
                         <input
-                            id="password"
+                            required
                             maxLength={30}
                             type="password"
                             value={password}
@@ -85,7 +94,25 @@ const Login = () => {
                         </Button>
                     </span>
                 </label>
+                <div className={cx('others-func')}>
+                    <p
+                        className={cx('reset-pw-btn')}
+                        onClick={
+                            handleOpenModalResetPassword
+                        }
+                    >
+                        Forgot password?
+                    </p>
 
+                    <span>
+                        <Button
+                            to="/sign-up-form"
+                            className={cx('sign-up')}
+                        >
+                            Create new account
+                        </Button>
+                    </span>
+                </div>
                 <Button
                     onClick={handlePasswordLogin}
                     className={cx('login-btn')}
@@ -97,16 +124,7 @@ const Login = () => {
                 >
                     LogIn
                 </Button>
-
-                <span>
-                    <Button
-                        to="/sign-up-form"
-                        className={cx('sign-up')}
-                    >
-                        Create new account
-                    </Button>
-                </span>
-            </div>
+            </form>
             <div className={cx('others-login')}>
                 <Button
                     onClick={handleGoogleLogin}
@@ -133,6 +151,7 @@ const Login = () => {
                     Login with Facebook
                 </Button>
             </div>
+            <ModalResetPassword />
         </div>
     );
 };

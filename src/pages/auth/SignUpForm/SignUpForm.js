@@ -1,21 +1,25 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext } from 'react';
 import styles from './SignUpForm.module.scss';
 import validator from 'validator';
 import classNames from 'classnames/bind';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faRightToBracket } from '@fortawesome/free-solid-svg-icons';
 import Button from '../../../components/Button/Button';
-import { createUserWithEmailAndPassword } from 'firebase/auth';
-import { auth } from '../../../firebase/firebase';
-import { AuthContext } from '../../../context/AuthProvider';
+import { Link } from 'react-router-dom';
+import { AppContext } from '../../../context/AppProvider';
 
 const cx = classNames.bind(styles);
 
 const SignUpForm = () => {
-    const { navigate } = useContext(AuthContext);
-
-    const [email, setEmail] = useState('');
-    const [password, setPassword] = useState('');
+    const {
+        setEmail,
+        setPassword,
+        setName,
+        email,
+        password,
+        name,
+        handleCreateAccountWithEmail,
+    } = useContext(AppContext);
 
     const handleEmail = (e) => {
         const email = e.target.value;
@@ -30,23 +34,11 @@ const SignUpForm = () => {
         setPassword(validator.trim(password));
         console.log(password);
     };
-
-    const handleCreateAccountWithEmail = () => {
-        createUserWithEmailAndPassword(
-            auth,
-            email,
-            password,
-        )
-            .then((userCredential) => {
-                const user = userCredential.user;
-                console.log(user);
-                user
-                    ? navigate('/login')
-                    : alert('Unidentify Error');
-            })
-            .catch((error) => {
-                alert(error);
-            });
+    const handleName = (e) => {
+        const name = e.target.value;
+        if (!name.startsWith(' ')) {
+            setName(name);
+        }
     };
 
     return (
@@ -56,14 +48,25 @@ const SignUpForm = () => {
                 <label>
                     Email:
                     <input
+                        required
                         value={email}
                         type="email"
                         onChange={handleEmail}
                     />
                 </label>
                 <label>
+                    Name:
+                    <input
+                        required
+                        value={name}
+                        type="text"
+                        onChange={handleName}
+                    />
+                </label>
+                <label>
                     Password:
                     <input
+                        required
                         maxLength={25}
                         value={password}
                         type="password"
@@ -73,6 +76,7 @@ const SignUpForm = () => {
                 <label>
                     Confirm Password:
                     <input
+                        required
                         maxLength={25}
                         value={password}
                         type="password"
@@ -92,9 +96,8 @@ const SignUpForm = () => {
                 </Button>
             </div>
 
-            <p>Already have account ?</p>
+            <Link to="/login">Already have account ?</Link>
         </div>
     );
 };
-
 export default SignUpForm;

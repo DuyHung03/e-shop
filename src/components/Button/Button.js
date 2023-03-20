@@ -47,7 +47,12 @@ const Button = ({
     }
 
     return (
-        <Btn id={id} className={classes} {...props}>
+        <Btn
+            id={id}
+            className={classes}
+            {...props}
+            type="submit"
+        >
             {leftIcon && (
                 <span className={cx('icon')}>
                     {leftIcon}

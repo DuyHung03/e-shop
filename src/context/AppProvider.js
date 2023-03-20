@@ -132,6 +132,7 @@ const AppProvider = ({ children }) => {
         setSearchResult([]);
         inputRef.current.focus();
     };
+    const [isOpenModal, setIsOpenModal] = useState(false);
 
     return (
         <AppContext.Provider
@@ -143,7 +144,10 @@ const AppProvider = ({ children }) => {
                 handleInputValue,
                 handleClearValue,
                 setSearchValue,
+                setIsOpenModal,
+
                 showResult,
+                isOpenModal,
                 searchResult,
                 searchValue,
                 debounce,
