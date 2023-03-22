@@ -22,6 +22,7 @@ const Actions = () => {
                 <Menu>
                     <span>
                         <Button
+                            to={`/user/${user.uid}`}
                             className={cx('user-button')}
                             rightIcon={
                                 <img

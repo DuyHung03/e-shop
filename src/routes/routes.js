@@ -20,18 +20,20 @@ export const PublicRoutes = [
         element: Search,
     },
     {
-        path: '/user',
+        path: '/user/:id',
         element: User,
     },
     {
         path: '/login',
         element: Login,
         toAuth: true,
+        title: 'Login',
     },
     {
         path: '/sign-up-form',
         element: SignUpForm,
         toAuth: true,
+        title: 'Sign Up',
     },
 
     {

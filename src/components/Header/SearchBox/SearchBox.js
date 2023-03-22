@@ -105,7 +105,9 @@ const SearchBox = () => {
                         )}
                         <Button
                             className={cx('search-button')}
-                            to="/search"
+                            to={
+                                searchValue ? '/search' : ''
+                            }
                             onMouseDown={(e) =>
                                 e.preventDefault()
                             }

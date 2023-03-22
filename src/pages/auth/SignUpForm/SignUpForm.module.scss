@@ -11,16 +11,24 @@
         .sign-up-btn {
             display: flex;
             justify-content: center;
-            width: 300px;
+            width: 100%;
             padding: 8px 16px;
+            margin: 16px 0;
             border-radius: 16px;
             font-size: 24px;
             background-color: #2b3467;
-            color: #d3d6ce;
+            color: #fff;
         }
         .sign-up-btn:hover {
             background-color: #d3d6ce;
             color: #2b3467;
         }
+    }
+    a {
+        color: #2b3467;
+    }
+
+    a:hover {
+        color: #146291;
     }
 }

@@ -14,16 +14,25 @@ function App() {
                         {PublicRoutes.map(
                             (route, index) => {
                                 const Page = route.element;
-                                const PageLayout =
-                                    route.toAuth
-                                        ? AuthLayout
-                                        : Layout;
+                                var PageLayout;
+                                var title;
+                                if (route.toAuth) {
+                                    PageLayout = AuthLayout;
+                                    title = route.title;
+                                } else {
+                                    PageLayout = Layout;
+                                }
+
                                 return (
                                     <Route
                                         key={index}
                                         path={route.path}
                                         element={
-                                            <PageLayout>
+                                            <PageLayout
+                                                title={
+                                                    title
+                                                }
+                                            >
                                                 <Page />
                                             </PageLayout>
                                         }

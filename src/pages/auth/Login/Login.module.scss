@@ -1,6 +1,5 @@
 .wrapper {
-    height: 50%;
-    margin-top: 40px;
+    height: 330px;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -94,7 +93,7 @@
             border-radius: 16px;
             font-size: 24px;
             background-color: #2b3467;
-            color: #d3d6ce;
+            color: #fff;
         }
         .login-btn:hover {
             background-color: #d3d6ce;

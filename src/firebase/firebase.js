@@ -18,6 +18,8 @@ import {
 const firebaseConfig = {
     apiKey: 'AIzaSyCCbvBIBadSdRMKfrmO8zghg-LhrSoFNws',
     authDomain: 'e-shop-f05c0.firebaseapp.com',
+    databaseURL:
+        'https://e-shop-f05c0-default-rtdb.asia-southeast1.firebasedatabase.app',
     projectId: 'e-shop-f05c0',
     storageBucket: 'e-shop-f05c0.appspot.com',
     messagingSenderId: '141282146145',

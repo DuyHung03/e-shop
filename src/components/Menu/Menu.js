@@ -17,7 +17,8 @@ const cx = classNames.bind(styles);
 
 const Menu = ({ children }) => {
     //*GET FNS FROM AUTHCONTEXT
-    const { navigate, setUser } = useContext(AuthContext);
+    const { navigate, user, setUser } =
+        useContext(AuthContext);
 
     const { setSearchValue } = useContext(AppContext);
 
@@ -35,7 +36,7 @@ const Menu = ({ children }) => {
                 <Popper width={180}>
                     <Button
                         className={cx('user-info-button')}
-                        to="/user"
+                        to={`/user/${user.uid}`}
                         menuType
                         leftIcon={
                             <FontAwesomeIcon
@@ -68,7 +69,7 @@ const Menu = ({ children }) => {
                 interactive
                 // visible
                 placement="bottom-end"
-                delay={[0, 300000]}
+                delay={[0, 300]}
                 render={renderMenu}
             >
                 {children}

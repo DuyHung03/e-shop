@@ -6,7 +6,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faRightToBracket } from '@fortawesome/free-solid-svg-icons';
 import Button from '../../../components/Button/Button';
 import { Link } from 'react-router-dom';
-import { AppContext } from '../../../context/AppProvider';
+import { AuthContext } from '../../../context/AuthProvider';
 
 const cx = classNames.bind(styles);
 
@@ -19,7 +19,7 @@ const SignUpForm = () => {
         password,
         name,
         handleCreateAccountWithEmail,
-    } = useContext(AppContext);
+    } = useContext(AuthContext);
 
     const handleEmail = (e) => {
         const email = e.target.value;
@@ -43,8 +43,7 @@ const SignUpForm = () => {
 
     return (
         <div className={cx('wrapper')}>
-            <h1>Sign Up</h1>
-            <div className={cx('form-section')}>
+            <form className={cx('form-section')}>
                 <label>
                     Email:
                     <input
@@ -94,7 +93,7 @@ const SignUpForm = () => {
                 >
                     Sign Up
                 </Button>
-            </div>
+            </form>
 
             <Link to="/login">Already have account ?</Link>
         </div>

@@ -13,6 +13,42 @@ const AuthProvider = ({ children }) => {
     const [user, setUser] = useState();
     const [loading, setLoading] = useState(true);
     const navigate = useNavigate();
+
+    const [email, setEmail] = useState('');
+    const [password, setPassword] = useState('');
+    const [name, setName] = useState('');
+    const handleCreateAccountWithEmail = () => {
+        if ((email, password, name)) {
+            createUserWithEmailAndPassword(
+                auth,
+                email,
+                password,
+            )
+                .then((userCredential) => {
+                    const user = userCredential.user;
+                    setUser(user);
+                    console.log(user);
+                    return user;
+                })
+                .then((user) => {
+                    updateProfile(auth.currentUser, {
+                        displayName: name,
+                    });
+                    if (user) navigate('/login');
+                    else {
+                        alert('Unidentify Error');
+                        navigate('/sign-up-form');
+                    }
+                })
+                .catch((error) => {
+                    alert(error);
+                    console.log('Loi', error);
+                });
+        } else {
+            alert('Error Empty Infomations');
+        }
+    };
+
     useEffect(() => {
         const unsubcribed = auth.onAuthStateChanged(
             (user) => {
@@ -25,34 +61,6 @@ const AuthProvider = ({ children }) => {
         return unsubcribed;
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
-
-    const [email, setEmail] = useState('');
-    const [password, setPassword] = useState('');
-    const [name, setName] = useState('');
-    const handleCreateAccountWithEmail = () => {
-        createUserWithEmailAndPassword(
-            auth,
-            email,
-            password,
-        )
-            .then(() => {
-                updateProfile(auth.currentUser, {
-                    displayName: name,
-                });
-            })
-            .then((userCredential) => {
-                const user = userCredential.user;
-                console.log(user);
-                setUser(user);
-                user
-                    ? navigate('/login')
-                    : alert('Unidentify Error');
-            })
-            .catch((error) => {
-                alert(error);
-            });
-    };
-
     return (
         <AuthContext.Provider
             value={{
