@@ -3,7 +3,7 @@ import {
     updateProfile,
 } from 'firebase/auth';
 import { createContext, useEffect, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { redirect, useNavigate } from 'react-router-dom';
 import Loading from '../components/Loading/Loading';
 import { auth } from '../firebase/firebase';
 
@@ -17,29 +17,24 @@ const AuthProvider = ({ children }) => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [name, setName] = useState('');
-    const handleCreateAccountWithEmail = () => {
+
+    //*SignIn
+    const handleCreateAccountWithEmail = async () => {
         if ((email, password, name)) {
-            createUserWithEmailAndPassword(
+            await createUserWithEmailAndPassword(
                 auth,
                 email,
                 password,
             )
                 .then((userCredential) => {
-                    const user = userCredential.user;
-                    setUser(user);
-                    console.log(user);
-                    return user;
-                })
-                .then((user) => {
                     updateProfile(auth.currentUser, {
                         displayName: name,
                     });
-                    if (user) navigate('/login');
-                    else {
-                        alert('Unidentify Error');
-                        navigate('/sign-up-form');
-                    }
+                    if (!userCredential.user)
+                        redirect('/sign-up-form');
+                    else navigate('/login');
                 })
+
                 .catch((error) => {
                     alert(error);
                     console.log('Loi', error);
@@ -53,6 +48,7 @@ const AuthProvider = ({ children }) => {
         const unsubcribed = auth.onAuthStateChanged(
             (user) => {
                 setUser(user);
+
                 setLoading(false);
                 navigate('/');
                 console.log(user);

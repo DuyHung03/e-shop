@@ -11,10 +11,14 @@ import {
 } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { AppContext } from '../../../context/AppProvider';
-import { signInWithEmailAndPassword } from 'firebase/auth';
+import {
+    getAdditionalUserInfo,
+    signInWithEmailAndPassword,
+} from 'firebase/auth';
 import { auth } from '../../../firebase/firebase';
 import { AuthContext } from '../../../context/AuthProvider';
 import ModalResetPassword from './ModalResetPassword/ModalResetPassword';
+import { addDocs } from '../../../firebase/addDocs';
 
 const cx = classNames.bind(styles);
 
@@ -25,7 +29,7 @@ const Login = () => {
         setIsOpenModal,
     } = useContext(AppContext);
 
-    const { navigate } = useContext(AuthContext);
+    const { setUser } = useContext(AuthContext);
 
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
@@ -42,14 +46,28 @@ const Login = () => {
         setPassword(validator.trim(password));
     };
 
-    const handlePasswordLogin = () => {
-        signInWithEmailAndPassword(auth, email, password)
+    const handlePasswordLogin = async () => {
+        await signInWithEmailAndPassword(
+            auth,
+            email,
+            password,
+        )
             .then((userCredential) => {
+                const { isNewUser } =
+                    getAdditionalUserInfo(userCredential);
                 const user = userCredential.user;
-                if (user) {
-                    navigate('/');
+                if (isNewUser) {
+                    addDocs('user', {
+                        displayName: user.displayName,
+                        uid: user.uid,
+                        email: user.email,
+                        photoURL: user.photoURL,
+                        phoneNumber: user.phoneNumber,
+                        providerId: user.providerId,
+                    });
                 }
                 console.log(user);
+                setUser(user);
             })
             .catch((error) => {
                 alert(error);

@@ -1,17 +1,21 @@
 import {
     FacebookAuthProvider,
+    getAdditionalUserInfo,
     GoogleAuthProvider,
     signInWithPopup,
 } from 'firebase/auth';
 import React, {
     createContext,
+    // useContext,
     useEffect,
     useRef,
     useState,
 } from 'react';
+import { addDocs } from '../firebase/addDocs';
 import { auth } from '../firebase/firebase';
 import useDebounce from '../hooks/useDebounce';
 import searchProduct from '../services/searchProduct';
+// import { AuthContext } from './AuthProvider';
 
 export const AppContext = createContext();
 
@@ -19,16 +23,22 @@ const AppProvider = ({ children }) => {
     const ggProvider = new GoogleAuthProvider();
     const fbProvider = new FacebookAuthProvider();
 
-    const handleGoogleLogin = () => {
-        signInWithPopup(auth, ggProvider)
-            .then((result) => {
-                // const credential =
-                //     GoogleAuthProvider.credentialFromResult(
-                //         result,
-                //     );
-                // const token = credential.accessToken;
-                const user = result.user;
-                console.log(user);
+    const handleGoogleLogin = async () => {
+        await signInWithPopup(auth, ggProvider)
+            .then((userCredential) => {
+                const user = userCredential.user;
+                const { isNewUser } =
+                    getAdditionalUserInfo(userCredential);
+                if (isNewUser) {
+                    addDocs('user', {
+                        displayName: user.displayName,
+                        email: user.email,
+                        uid: user.uid,
+                        photoURL: user.photoURL,
+                        phoneNumber: user.phoneNumber,
+                        providerID: user.providerId,
+                    });
+                }
             })
             .catch((error) => {
                 // Handle Errors here.
@@ -36,26 +46,31 @@ const AppProvider = ({ children }) => {
                 const errorMessage = error.message;
                 // The email of the user's account used.
                 const email = error.customData.email;
-                // The AuthCredential type that was used.
-                // const credential =
-                //     GoogleAuthProvider.credentialFromError(
-                //         error,
-                //     );
-                // ...
+
                 console.log(
                     'Error Code: ',
                     errorCode,
                     errorMessage,
                     email,
-                    // credential,
                 );
             });
     };
-    const handleFacebookLogin = () => {
-        signInWithPopup(auth, fbProvider)
-            .then((result) => {
-                const user = result.user;
-                console.log(user);
+    const handleFacebookLogin = async () => {
+        await signInWithPopup(auth, fbProvider)
+            .then((userCredential) => {
+                const { isNewUser } =
+                    getAdditionalUserInfo(userCredential);
+                const user = userCredential.user;
+                if (isNewUser) {
+                    addDocs('user', {
+                        displayName: user.displayName,
+                        email: user.email,
+                        uid: user.uid,
+                        photoURL: user.photoURL,
+                        phoneNumber: user.phoneNumber,
+                        providerID: user.providerId,
+                    });
+                }
             })
             .catch((error) => {
                 // Handle Errors here.
