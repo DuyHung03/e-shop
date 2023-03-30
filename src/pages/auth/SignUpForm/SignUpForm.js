@@ -5,8 +5,13 @@ import classNames from 'classnames/bind';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faRightToBracket } from '@fortawesome/free-solid-svg-icons';
 import Button from '../../../components/Button/Button';
-import { Link } from 'react-router-dom';
+import { Link, redirect } from 'react-router-dom';
 import { AuthContext } from '../../../context/AuthProvider';
+import {
+    createUserWithEmailAndPassword,
+    updateProfile,
+} from 'firebase/auth';
+import { auth } from '../../../firebase/firebase';
 
 const cx = classNames.bind(styles);
 
@@ -18,7 +23,8 @@ const SignUpForm = () => {
         email,
         password,
         name,
-        handleCreateAccountWithEmail,
+        setUser,
+        navigate,
     } = useContext(AuthContext);
 
     const handleEmail = (e) => {
@@ -38,6 +44,30 @@ const SignUpForm = () => {
         const name = e.target.value;
         if (!name.startsWith(' ')) {
             setName(name);
+        }
+    };
+
+    const handleCreateAccountWithEmail = () => {
+        if ((email, password, name)) {
+            createUserWithEmailAndPassword(
+                auth,
+                email,
+                password,
+            )
+                .then((userCredential) => {
+                    updateProfile(auth.currentUser, {
+                        displayName: name,
+                    });
+                    console.log(userCredential.user);
+                    navigate('/login');
+                })
+
+                .catch((error) => {
+                    alert(error);
+                    console.log('Loi', error);
+                });
+        } else {
+            alert('Error Empty Infomations');
         }
     };
 

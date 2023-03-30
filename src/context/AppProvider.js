@@ -36,7 +36,8 @@ const AppProvider = ({ children }) => {
                         uid: user.uid,
                         photoURL: user.photoURL,
                         phoneNumber: user.phoneNumber,
-                        providerID: user.providerId,
+                        providerID:
+                            user.providerData[0].providerId,
                     });
                 }
             })
@@ -68,7 +69,8 @@ const AppProvider = ({ children }) => {
                         uid: user.uid,
                         photoURL: user.photoURL,
                         phoneNumber: user.phoneNumber,
-                        providerID: user.providerId,
+                        providerID:
+                            user.providerData[0].providerId,
                     });
                 }
             })
@@ -133,7 +135,7 @@ const AppProvider = ({ children }) => {
 
         const callAPI = async () => {
             setLoading(true);
-            const res = await searchProduct(debounce);
+            const res = await searchProduct(debounce, 10);
             console.log(res);
             setSearchResult(res);
             setLoading(false);
@@ -149,6 +151,20 @@ const AppProvider = ({ children }) => {
     };
     const [isOpenModal, setIsOpenModal] = useState(false);
 
+    //*SET PRODUCT ITEM
+
+    const [currentProduct, setCurrentProduct] = useState(
+        {},
+    );
+
+    const [isLoadingProduct, setIsLoadingProduct] =
+        useState(true);
+
+    const handleSetCurrentProduct = (prd) => {
+        setCurrentProduct(prd);
+        setShowResult(false);
+    };
+
     return (
         <AppContext.Provider
             value={{
@@ -160,7 +176,11 @@ const AppProvider = ({ children }) => {
                 handleClearValue,
                 setSearchValue,
                 setIsOpenModal,
-
+                setCurrentProduct,
+                setShowResult,
+                setSearchResult,
+                setIsLoadingProduct,
+                handleSetCurrentProduct,
                 showResult,
                 isOpenModal,
                 searchResult,
@@ -168,6 +188,8 @@ const AppProvider = ({ children }) => {
                 debounce,
                 loading,
                 inputRef,
+                currentProduct,
+                isLoadingProduct,
             }}
         >
             {children}

@@ -16,11 +16,11 @@ export const PublicRoutes = [
         element: Cart,
     },
     {
-        path: '/search',
+        path: '/search/:productName',
         element: Search,
     },
     {
-        path: '/user/:id',
+        path: '/user/:userId',
         element: User,
     },
     {
@@ -37,7 +37,7 @@ export const PublicRoutes = [
     },
 
     {
-        path: '/product',
+        path: '/product/:productId/:title',
         element: Product,
     },
 ];

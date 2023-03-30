@@ -66,6 +66,7 @@ const Login = () => {
                         providerId: user.providerId,
                     });
                 }
+
                 console.log(user);
                 setUser(user);
             })

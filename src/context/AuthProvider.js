@@ -1,9 +1,5 @@
-import {
-    createUserWithEmailAndPassword,
-    updateProfile,
-} from 'firebase/auth';
 import { createContext, useEffect, useState } from 'react';
-import { redirect, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import Loading from '../components/Loading/Loading';
 import { auth } from '../firebase/firebase';
 
@@ -19,39 +15,18 @@ const AuthProvider = ({ children }) => {
     const [name, setName] = useState('');
 
     //*SignIn
-    const handleCreateAccountWithEmail = async () => {
-        if ((email, password, name)) {
-            await createUserWithEmailAndPassword(
-                auth,
-                email,
-                password,
-            )
-                .then((userCredential) => {
-                    updateProfile(auth.currentUser, {
-                        displayName: name,
-                    });
-                    if (!userCredential.user)
-                        redirect('/sign-up-form');
-                    else navigate('/login');
-                })
-
-                .catch((error) => {
-                    alert(error);
-                    console.log('Loi', error);
-                });
-        } else {
-            alert('Error Empty Infomations');
-        }
-    };
 
     useEffect(() => {
         const unsubcribed = auth.onAuthStateChanged(
             (user) => {
-                setUser(user);
-
-                setLoading(false);
-                navigate('/');
-                console.log(user);
+                if (user) {
+                    setUser(user);
+                    setLoading(false);
+                    navigate('/');
+                    console.log(user);
+                } else {
+                    setLoading(false);
+                }
             },
         );
         return unsubcribed;
@@ -63,7 +38,6 @@ const AuthProvider = ({ children }) => {
                 user,
                 navigate,
                 setUser,
-                handleCreateAccountWithEmail,
                 setEmail,
                 setPassword,
                 setName,

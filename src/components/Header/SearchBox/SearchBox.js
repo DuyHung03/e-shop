@@ -12,6 +12,8 @@ import HeadlessTippy from '@tippyjs/react/headless';
 import Popper from '../../Popper/Popper';
 import SearchItem from './SearchItem/SearchItem';
 import { AppContext } from '../../../context/AppProvider';
+import { Link } from 'react-router-dom';
+import searchProduct from '../../../services/searchProduct';
 
 const cx = classNames.bind(styles);
 
@@ -27,7 +29,24 @@ const SearchBox = () => {
         debounce,
         loading,
         inputRef,
+        setCurrentProduct,
+        setShowResult,
+        setSearchResult,
+        setIsLoadingProduct,
     } = useContext(AppContext);
+
+    const handleSetCurrentProduct = (prd) => {
+        setCurrentProduct(prd);
+        setShowResult(false);
+    };
+
+    const handleSearchByKeyword = async () => {
+        setIsLoadingProduct(true);
+        const res = await searchProduct(debounce);
+        console.log(res);
+        setSearchResult(res);
+        setIsLoadingProduct(false);
+    };
 
     return (
         <div>
@@ -58,16 +77,25 @@ const SearchBox = () => {
                             >
                                 {searchResult.map(
                                     (item) => (
-                                        <SearchItem
+                                        <Link
                                             key={item.id}
-                                            src={
-                                                item
-                                                    .images[0]
+                                            to={`/product/${item.id}/${item.title}`}
+                                            onClick={() =>
+                                                handleSetCurrentProduct(
+                                                    item,
+                                                )
                                             }
-                                            title={
-                                                item.title
-                                            }
-                                        />
+                                        >
+                                            <SearchItem
+                                                src={
+                                                    item
+                                                        .images[0]
+                                                }
+                                                title={
+                                                    item.title
+                                                }
+                                            />
+                                        </Link>
                                     ),
                                 )}
                             </Popper>
@@ -106,11 +134,11 @@ const SearchBox = () => {
                         <Button
                             className={cx('search-button')}
                             to={
-                                searchValue ? '/search' : ''
+                                searchValue
+                                    ? `/search/${searchValue}`
+                                    : ''
                             }
-                            onMouseDown={(e) =>
-                                e.preventDefault()
-                            }
+                            onClick={handleSearchByKeyword}
                         >
                             <FontAwesomeIcon
                                 icon={faMagnifyingGlass}
