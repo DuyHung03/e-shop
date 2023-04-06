@@ -35,6 +35,11 @@ const SearchBox = () => {
         handleSetCurrentProduct,
     } = useContext(AppContext);
 
+    /**
+     * This function handles a search by keyword, sets loading and result states, calls an API to
+     * search for products, stores the result in local storage, and updates the loading and result
+     * states accordingly.
+     */
     const handleSearchByKeyword = async () => {
         setShowResult(false);
         setIsLoadingProduct(true);

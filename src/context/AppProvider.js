@@ -21,6 +21,11 @@ const AppProvider = ({ children }) => {
     const ggProvider = new GoogleAuthProvider();
     const fbProvider = new FacebookAuthProvider();
 
+    /**
+     * The function handles Google login authentication and adds new user information to a database if
+     * the user is new.
+     */
+
     const handleGoogleLogin = async () => {
         await signInWithPopup(auth, ggProvider)
             .then((userCredential) => {
@@ -54,6 +59,11 @@ const AppProvider = ({ children }) => {
                 );
             });
     };
+
+    /**
+     * The function handles Facebook login authentication and adds new users to a Firestore database.
+     */
+
     const handleFacebookLogin = async () => {
         await signInWithPopup(auth, fbProvider)
             .then((userCredential) => {
@@ -94,6 +104,7 @@ const AppProvider = ({ children }) => {
             });
     };
 
+    //Show result (product) in searchBox
     const [showResult, setShowResult] = useState(false);
 
     const [searchValue, setSearchValue] = useState('');
@@ -109,6 +120,13 @@ const AppProvider = ({ children }) => {
 
     const inputRef = useRef();
 
+    /**
+     * The function handles input value changes and sets the search value if it doesn't start with a
+     * space.
+     * @param e - The parameter "e" is an event object that is passed to the function when it is
+     * triggered by an event, such as a user typing in an input field. It contains information about
+     * the event, such as the target element (in this case, the input field) and the value of the input
+     */
     const handleInputValue = (e) => {
         const searchValue = e.target.value;
         if (!searchValue.startsWith(' ')) {
@@ -125,6 +143,13 @@ const AppProvider = ({ children }) => {
         setShowResult(true);
     };
 
+    /* This `useEffect` hook is responsible for performing a search operation based on the `debounce`
+    state value. If `debounce` is empty or contains only whitespace characters, it sets the
+    `searchResult` state to an empty array and sets the `loading` state to `false`. Otherwise, it
+    sets the `loading` state to `true`, calls the `searchProduct` function with the `debounce` value
+    and a limit of 10 results, and sets the `searchResult` state to the result of the search.
+    Finally, it sets the `loading` state to `false`. This hook is triggered whenever the `debounce`
+    state value changes. */
     useEffect(() => {
         if (!debounce.trim()) {
             setSearchResult([]);
@@ -149,6 +174,7 @@ const AppProvider = ({ children }) => {
         setSearchResult([]);
         inputRef.current.focus();
     };
+
     const [isOpenModal, setIsOpenModal] = useState(false);
 
     //*SET PRODUCT ITEM
@@ -157,9 +183,13 @@ const AppProvider = ({ children }) => {
         localStorage.getItem('currentProduct' || ''),
     );
 
-    const [isLoadingProduct, setIsLoadingProduct] =
-        useState(true);
-
+    /**
+     * The function sets the current product, hides the result, and saves the current product in local
+     * storage.
+     * @param prd - The parameter `prd` is an object representing a product. It is passed as an
+     * argument to the `handleSetCurrentProduct` function. The function sets the `currentProduct` state
+     * to the value of `prd`, hides the result, and stores the `prd` object in the browser's local
+     */
     const handleSetCurrentProduct = (prd) => {
         setCurrentProduct(prd);
         setShowResult(false);
@@ -185,7 +215,6 @@ const AppProvider = ({ children }) => {
                 setCurrentProduct,
                 setShowResult,
                 setSearchResult,
-                setIsLoadingProduct,
                 handleSetCurrentProduct,
                 setShowProduct,
                 setSearchAllResult,
@@ -197,7 +226,6 @@ const AppProvider = ({ children }) => {
                 loading,
                 inputRef,
                 currentProduct,
-                isLoadingProduct,
                 showProduct,
                 searchAllResult,
             }}

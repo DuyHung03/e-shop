@@ -5,7 +5,7 @@ import classNames from 'classnames/bind';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faRightToBracket } from '@fortawesome/free-solid-svg-icons';
 import Button from '../../../components/Button/Button';
-import { Link, redirect } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { AuthContext } from '../../../context/AuthProvider';
 import {
     createUserWithEmailAndPassword,
@@ -23,7 +23,6 @@ const SignUpForm = () => {
         email,
         password,
         name,
-        setUser,
         navigate,
     } = useContext(AuthContext);
 
@@ -47,6 +46,10 @@ const SignUpForm = () => {
         }
     };
 
+    /**
+     * This function creates a user account with email and password, and updates the user's display
+     * name before navigating to the login page.
+     */
     const handleCreateAccountWithEmail = () => {
         if ((email, password, name)) {
             createUserWithEmailAndPassword(

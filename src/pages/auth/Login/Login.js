@@ -46,6 +46,10 @@ const Login = () => {
         setPassword(validator.trim(password));
     };
 
+    /**
+     * This function handles the login process for a user with their email and password, and adds their
+     * information to a database if they are a new user.
+     */
     const handlePasswordLogin = async () => {
         await signInWithEmailAndPassword(
             auth,

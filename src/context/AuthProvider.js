@@ -16,6 +16,9 @@ const AuthProvider = ({ children }) => {
 
     //*SignIn
 
+    /* This is a React hook called `useEffect` that is used to perform side effects in a functional
+    component. In this case, it is used to listen for changes in the authentication state of the
+    user using the `auth.onAuthStateChanged` method provided by Firebase. */
     useEffect(() => {
         const unsubcribed = auth.onAuthStateChanged(
             (user) => {

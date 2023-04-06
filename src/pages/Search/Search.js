@@ -13,6 +13,13 @@ const Search = () => {
         handleSetCurrentProduct,
     } = useContext(AppContext);
 
+    /* This is a React hook called `useEffect` that is used to perform side effects in functional
+    components. In this case, it is used to retrieve the `currentProduct` item from local storage
+    and set it as the current product in the app context using the `setCurrentProduct` function. The
+    empty array `[]` as the second argument to `useEffect` means that this effect will only run once
+    when the component mounts. The `console.log(currentProduct)` statement is used to log the
+    current product to the console for debugging purposes. */
+
     useEffect(() => {
         const allProduct = JSON.parse(
             localStorage.getItem('searchAllResult'),
