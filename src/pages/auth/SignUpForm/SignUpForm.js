@@ -55,7 +55,7 @@ const SignUpForm = () => {
                 password,
             )
                 .then((userCredential) => {
-                    updateProfile(auth.currentUser, {
+                    updateProfile(userCredential.user, {
                         displayName: name,
                     });
                     console.log(userCredential.user);

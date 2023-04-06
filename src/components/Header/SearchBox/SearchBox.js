@@ -29,22 +29,22 @@ const SearchBox = () => {
         debounce,
         loading,
         inputRef,
-        setCurrentProduct,
         setShowResult,
-        setSearchResult,
         setIsLoadingProduct,
+        setSearchAllResult,
+        handleSetCurrentProduct,
     } = useContext(AppContext);
 
-    const handleSetCurrentProduct = (prd) => {
-        setCurrentProduct(prd);
-        setShowResult(false);
-    };
-
     const handleSearchByKeyword = async () => {
+        setShowResult(false);
         setIsLoadingProduct(true);
         const res = await searchProduct(debounce);
         console.log(res);
-        setSearchResult(res);
+        setSearchAllResult(res);
+        localStorage.setItem(
+            'searchAllResult',
+            JSON.stringify(res),
+        );
         setIsLoadingProduct(false);
     };
 
@@ -135,10 +135,14 @@ const SearchBox = () => {
                             className={cx('search-button')}
                             to={
                                 searchValue
-                                    ? `/search/${searchValue}`
+                                    ? `/search/q=${searchValue}`
                                     : ''
                             }
-                            onClick={handleSearchByKeyword}
+                            onClick={
+                                searchValue
+                                    ? handleSearchByKeyword
+                                    : null
+                            }
                         >
                             <FontAwesomeIcon
                                 icon={faMagnifyingGlass}

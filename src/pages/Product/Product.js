@@ -1,8 +1,18 @@
-import React, { useContext } from 'react';
+import React, { useContext, useEffect } from 'react';
 import { AppContext } from '../../context/AppProvider';
 
 const Product = () => {
-    const { currentProduct } = useContext(AppContext);
+    const { currentProduct, setCurrentProduct } =
+        useContext(AppContext);
+
+    useEffect(() => {
+        const productItem = JSON.parse(
+            localStorage.getItem('currentProduct'),
+        );
+        setCurrentProduct(productItem);
+        console.log(currentProduct);
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, []);
 
     return (
         <div>

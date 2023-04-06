@@ -6,7 +6,6 @@ import {
 } from 'firebase/auth';
 import React, {
     createContext,
-    // useContext,
     useEffect,
     useRef,
     useState,
@@ -15,7 +14,6 @@ import { addDocs } from '../firebase/addDocs';
 import { auth } from '../firebase/firebase';
 import useDebounce from '../hooks/useDebounce';
 import searchProduct from '../services/searchProduct';
-// import { AuthContext } from './AuthProvider';
 
 export const AppContext = createContext();
 
@@ -101,6 +99,9 @@ const AppProvider = ({ children }) => {
     const [searchValue, setSearchValue] = useState('');
 
     const [searchResult, setSearchResult] = useState([]);
+    const [searchAllResult, setSearchAllResult] = useState(
+        [],
+    );
 
     const [loading, setLoading] = useState(true);
 
@@ -134,7 +135,6 @@ const AppProvider = ({ children }) => {
         setLoading(true);
 
         const callAPI = async () => {
-            setLoading(true);
             const res = await searchProduct(debounce, 10);
             console.log(res);
             setSearchResult(res);
@@ -154,7 +154,7 @@ const AppProvider = ({ children }) => {
     //*SET PRODUCT ITEM
 
     const [currentProduct, setCurrentProduct] = useState(
-        {},
+        localStorage.getItem('currentProduct' || ''),
     );
 
     const [isLoadingProduct, setIsLoadingProduct] =
@@ -163,7 +163,13 @@ const AppProvider = ({ children }) => {
     const handleSetCurrentProduct = (prd) => {
         setCurrentProduct(prd);
         setShowResult(false);
+        localStorage.setItem(
+            'currentProduct',
+            JSON.stringify(prd),
+        );
     };
+
+    const [showProduct, setShowProduct] = useState(false);
 
     return (
         <AppContext.Provider
@@ -181,6 +187,8 @@ const AppProvider = ({ children }) => {
                 setSearchResult,
                 setIsLoadingProduct,
                 handleSetCurrentProduct,
+                setShowProduct,
+                setSearchAllResult,
                 showResult,
                 isOpenModal,
                 searchResult,
@@ -190,6 +198,8 @@ const AppProvider = ({ children }) => {
                 inputRef,
                 currentProduct,
                 isLoadingProduct,
+                showProduct,
+                searchAllResult,
             }}
         >
             {children}
