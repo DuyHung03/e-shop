@@ -114,6 +114,7 @@ const AppProvider = ({ children }) => {
         [],
     );
 
+    /* Show loading pages */
     const [loading, setLoading] = useState(true);
 
     const debounce = useDebounce(searchValue, 500);
@@ -143,11 +144,7 @@ const AppProvider = ({ children }) => {
         setShowResult(true);
     };
 
-    /* This `useEffect` hook is responsible for performing a search operation based on the `debounce`
-    state value. If `debounce` is empty or contains only whitespace characters, it sets the
-    `searchResult` state to an empty array and sets the `loading` state to `false`. Otherwise, it
-    sets the `loading` state to `true`, calls the `searchProduct` function with the `debounce` value
-    and a limit of 10 results, and sets the `searchResult` state to the result of the search.
+    /* This `useEffect` hook is responsible for performing a search operation based on the `debounce`state value. If `debounce` is empty or contains only whitespace characters, it sets the `searchResult` state to an empty array and sets the `loading` state to `false`. Otherwise, it sets the `loading` state to `true`, calls the `searchProduct` function with the `debounce` value and a limit of 10 results, and sets the `searchResult` state to the result of the search.
     Finally, it sets the `loading` state to `false`. This hook is triggered whenever the `debounce`
     state value changes. */
     useEffect(() => {

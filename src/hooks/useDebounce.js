@@ -9,8 +9,7 @@ import { useEffect, useState } from 'react';
  * unnecessary re-renders or API calls.
  * @returns The `useDebounce` hook returns the `debounce` state variable, which is updated with the
  * `value` passed as argument after a delay of `delay` milliseconds. The purpose of this hook is to
- * debounce the value passed as argument, meaning that it delays its update until a certain amount of
- * time has passed without any new updates.
+ * debounce the value passed as argument, meaning that it delays its update until a certain amount of time has passed without any new updates.
  */
 const useDebounce = (value, delay) => {
     const [debounce, setDebounce] = useState(value);

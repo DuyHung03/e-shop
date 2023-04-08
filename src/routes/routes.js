@@ -1,10 +1,22 @@
-import Cart from '../pages/Cart/Cart';
-import Home from '../pages/Home/Home';
-import Login from '../pages/auth/Login/Login';
-import Product from '../pages/Product/Product';
-import Search from '../pages/Search/Search';
-import SignUpForm from '../pages/auth/SignUpForm/SignUpForm';
-import User from '../pages/User/User';
+import { lazy } from 'react';
+
+const NotFound = lazy(() =>
+    import('../pages/NotFound/NotFound'),
+);
+
+const Home = lazy(() => import('../pages/Home/Home'));
+const Cart = lazy(() => import('../pages/Cart/Cart'));
+const Login = lazy(() =>
+    import('../pages/auth/Login/Login'),
+);
+const Product = lazy(() =>
+    import('../pages/Product/Product'),
+);
+const Search = lazy(() => import('../pages/Search/Search'));
+const SignUpForm = lazy(() =>
+    import('../pages/auth/SignUpForm/SignUpForm'),
+);
+const User = lazy(() => import('../pages/User/User'));
 
 export const PublicRoutes = [
     {
@@ -39,5 +51,10 @@ export const PublicRoutes = [
     {
         path: '/product/:productId/:title',
         element: Product,
+    },
+    {
+        path: '*',
+        element: NotFound,
+        toAuth: true,
     },
 ];

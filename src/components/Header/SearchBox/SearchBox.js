@@ -30,7 +30,6 @@ const SearchBox = () => {
         loading,
         inputRef,
         setShowResult,
-        setIsLoadingProduct,
         setSearchAllResult,
         handleSetCurrentProduct,
     } = useContext(AppContext);
@@ -42,7 +41,6 @@ const SearchBox = () => {
      */
     const handleSearchByKeyword = async () => {
         setShowResult(false);
-        setIsLoadingProduct(true);
         const res = await searchProduct(debounce);
         console.log(res);
         setSearchAllResult(res);
@@ -50,7 +48,6 @@ const SearchBox = () => {
             'searchAllResult',
             JSON.stringify(res),
         );
-        setIsLoadingProduct(false);
     };
 
     return (
