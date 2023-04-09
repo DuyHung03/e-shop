@@ -49,6 +49,9 @@ function App() {
                                                         title={
                                                             title
                                                         }
+                                                        isSideBar={
+                                                            route.isSideBar
+                                                        }
                                                     >
                                                         <Page />
                                                     </PageLayout>

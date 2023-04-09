@@ -22,6 +22,7 @@ export const PublicRoutes = [
     {
         path: '/',
         element: Home,
+        isSideBar: true,
     },
     {
         path: '/cart',
@@ -30,6 +31,7 @@ export const PublicRoutes = [
     {
         path: '/search/:productName',
         element: Search,
+        isSideBar: true,
     },
     {
         path: '/user/:userId',
