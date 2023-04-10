@@ -157,7 +157,10 @@ const AppProvider = ({ children }) => {
         setLoading(true);
 
         const callAPI = async () => {
-            const res = await searchProduct(debounce, 10);
+            const res = await searchProduct(
+                debounce.trim(),
+                10,
+            );
             console.log(res);
             setSearchResult(res);
             setLoading(false);

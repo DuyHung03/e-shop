@@ -19,10 +19,9 @@ const Sidebar = () => {
         const callAPI = async () => {
             const res = await getCatergories();
             setCatergories(res);
-            console.log(catergories);
+            console.log(res);
         };
         callAPI();
-        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
     return (
         <div className={cx('wrapper')}>
