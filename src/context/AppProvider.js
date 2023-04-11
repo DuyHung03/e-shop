@@ -144,6 +144,17 @@ const AppProvider = ({ children }) => {
         setShowResult(true);
     };
 
+    /* This code block is defining and initializing state variables and a function for pagination. */
+    const [showProduct, setShowProduct] = useState(false);
+
+    const pageSize = 20;
+    const [currentPage, setCurrentPage] = useState(1);
+    const start = (currentPage - 1) * pageSize;
+    const end = start + pageSize;
+    const currentProducts = (data) => {
+        return data.slice(start, end);
+    };
+
     /* This `useEffect` hook is responsible for performing a search operation based on the `debounce`state value. If `debounce` is empty or contains only whitespace characters, it sets the `searchResult` state to an empty array and sets the `loading` state to `false`. Otherwise, it sets the `loading` state to `true`, calls the `searchProduct` function with the `debounce` value and a limit of 10 results, and sets the `searchResult` state to the result of the search.
     Finally, it sets the `loading` state to `false`. This hook is triggered whenever the `debounce`
     state value changes. */
@@ -159,6 +170,7 @@ const AppProvider = ({ children }) => {
         const callAPI = async () => {
             const res = await searchProduct(
                 debounce.trim(),
+                currentPage,
                 10,
             );
             console.log(res);
@@ -167,6 +179,7 @@ const AppProvider = ({ children }) => {
         };
 
         callAPI();
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [debounce]);
 
     const handleClearValue = () => {
@@ -199,8 +212,6 @@ const AppProvider = ({ children }) => {
         );
     };
 
-    const [showProduct, setShowProduct] = useState(false);
-
     return (
         <AppContext.Provider
             value={{
@@ -218,6 +229,10 @@ const AppProvider = ({ children }) => {
                 handleSetCurrentProduct,
                 setShowProduct,
                 setSearchAllResult,
+                setCurrentPage,
+                currentProducts,
+                currentPage,
+                pageSize,
                 showResult,
                 isOpenModal,
                 searchResult,

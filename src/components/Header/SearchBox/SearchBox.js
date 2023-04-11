@@ -14,6 +14,7 @@ import SearchItem from './SearchItem/SearchItem';
 import { AppContext } from '../../../context/AppProvider';
 import { Link } from 'react-router-dom';
 import searchProduct from '../../../services/searchProduct';
+import { Images } from '../../../assets/images';
 
 const cx = classNames.bind(styles);
 
@@ -65,44 +66,39 @@ const SearchBox = () => {
                         tabIndex="-1"
                         {...attrs}
                     >
-                        {!searchResult.length > 0 ? (
-                            <Popper width={316}>
+                        <Popper width={316} maxHeight={390}>
+                            {!searchResult.length > 0 ? (
                                 <span>
                                     No products found "
                                     {searchValue}"
                                 </span>
-                            </Popper>
-                        ) : (
-                            <Popper
-                                width={316}
-                                maxHeight={390}
-                            >
-                                {searchResult.map(
-                                    (item) => (
-                                        <Link
-                                            key={item.id}
-                                            to={`/product/${item.id}/${item.title}`}
-                                            onClick={() =>
-                                                handleSetCurrentProduct(
-                                                    item,
-                                                )
+                            ) : (
+                                searchResult.map((item) => (
+                                    <Link
+                                        key={item.id}
+                                        to={`/product/${item.id}/${item.title}`}
+                                        onClick={() =>
+                                            handleSetCurrentProduct(
+                                                item,
+                                            )
+                                        }
+                                    >
+                                        <SearchItem
+                                            src={
+                                                item
+                                                    .images[0]
                                             }
-                                        >
-                                            <SearchItem
-                                                src={
-                                                    item
-                                                        .images[0]
-                                                }
-                                                title={
-                                                    item.title
-                                                }
-                                                fallbackSrc="https://images.unsplash.com/photo-1680967230555-a803660575dc?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHw1N3x8fGVufDB8fHx8&auto=format&fit=crop&w=500&q=60"
-                                            />
-                                        </Link>
-                                    ),
-                                )}
-                            </Popper>
-                        )}
+                                            title={
+                                                item.title
+                                            }
+                                            fallbackSrc={
+                                                Images.noProductImage
+                                            }
+                                        />
+                                    </Link>
+                                ))
+                            )}
+                        </Popper>
                     </div>
                 )}
             >

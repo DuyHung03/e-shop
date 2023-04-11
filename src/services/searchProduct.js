@@ -13,13 +13,17 @@
  */
 import { request } from '../utils/httpRequest';
 
-const searchProduct = async (keyword, limit) => {
+const searchProduct = async (
+    keyword,
+    offset = 0,
+    limit = 0,
+) => {
     try {
         const res = await request.get('products/', {
             method: 'GET',
             params: {
                 title: keyword,
-                offset: 0,
+                offset: offset,
                 limit: limit,
             },
         });

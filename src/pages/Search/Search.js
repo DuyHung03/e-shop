@@ -1,16 +1,17 @@
 import React, { Suspense, lazy, useEffect } from 'react';
 import { useContext } from 'react';
-import { Link } from 'react-router-dom';
 import { AppContext } from '../../context/AppProvider';
-const ProductItem = lazy(() =>
-    import('../../components/ProductItem/ProductItem'),
+import Paginate from '../../components/Pagination/Pagination';
+const ProductList = lazy(() =>
+    import('../../components/ProductList/ProductList'),
 );
 
 const Search = () => {
     const {
         searchAllResult,
         setSearchAllResult,
-        handleSetCurrentProduct,
+        currentProducts,
+        pageSize,
     } = useContext(AppContext);
 
     /* This is a React hook called `useEffect` that is used to perform side effects in functional
@@ -30,25 +31,25 @@ const Search = () => {
 
     return (
         <div>
-            {searchAllResult.map((prd) => (
-                <Suspense
-                    fallback={<div>Loading...</div>}
-                    key={prd.id}
-                >
-                    <Link
-                        key={prd.id}
-                        to={`/product/${prd.id}/${prd.title}`}
-                        onClick={() =>
-                            handleSetCurrentProduct(prd)
-                        }
+            {!searchAllResult.length > 0 ? (
+                <div>Cannot found products</div>
+            ) : (
+                <>
+                    <Suspense
+                        fallback={<div>Loading...</div>}
                     >
-                        <ProductItem
-                            id={prd.id}
-                            name={prd.title}
+                        <ProductList
+                            data={currentProducts(
+                                searchAllResult,
+                            )}
                         />
-                    </Link>
-                </Suspense>
-            ))}
+                    </Suspense>
+                    <Paginate
+                        data={searchAllResult}
+                        pageSize={pageSize}
+                    />
+                </>
+            )}
         </div>
     );
 };

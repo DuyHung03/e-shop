@@ -25,12 +25,15 @@ const Sidebar = () => {
     }, []);
     return (
         <div className={cx('wrapper')}>
+            <p>Catergories</p>
             {catergories.map((res) => (
                 <Suspense
                     fallback={<div>...</div>}
                     key={res.id}
                 >
-                    <Catergories>{res.name}</Catergories>
+                    <Catergories catergoryData={res}>
+                        {res.name}
+                    </Catergories>
                 </Suspense>
             ))}
         </div>
