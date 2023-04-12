@@ -1,0 +1,23 @@
+.wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    .direct-button {
+        width: 60px;
+        height: 60px;
+        border-radius: 100rem;
+        margin: 0 8px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        &:hover {
+            background-color: #ddd;
+        }
+    }
+
+    .image {
+        border-radius: 20px;
+        height: 500px;
+    }
+}

@@ -52,7 +52,7 @@ const SearchBox = () => {
     };
 
     return (
-        <div>
+        <span>
             <HeadlessTippy
                 interactive
                 visible={
@@ -150,7 +150,7 @@ const SearchBox = () => {
                     </div>
                 </div>
             </HeadlessTippy>
-        </div>
+        </span>
     );
 };
 

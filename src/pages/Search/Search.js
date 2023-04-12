@@ -1,7 +1,6 @@
 import React, { Suspense, lazy, useEffect } from 'react';
 import { useContext } from 'react';
 import { AppContext } from '../../context/AppProvider';
-import Paginate from '../../components/Pagination/Pagination';
 const ProductList = lazy(() =>
     import('../../components/ProductList/ProductList'),
 );
@@ -11,7 +10,6 @@ const Search = () => {
         searchAllResult,
         setSearchAllResult,
         currentProducts,
-        pageSize,
     } = useContext(AppContext);
 
     /* This is a React hook called `useEffect` that is used to perform side effects in functional
@@ -39,15 +37,12 @@ const Search = () => {
                         fallback={<div>Loading...</div>}
                     >
                         <ProductList
-                            data={currentProducts(
+                            cutData={currentProducts(
                                 searchAllResult,
                             )}
+                            data={searchAllResult}
                         />
                     </Suspense>
-                    <Paginate
-                        data={searchAllResult}
-                        pageSize={pageSize}
-                    />
                 </>
             )}
         </div>

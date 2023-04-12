@@ -41,10 +41,10 @@ const Home = () => {
         <div>
             <Suspense fallback={<div>...</div>}>
                 <ProductList
-                    data={currentProducts(products)}
+                    cutData={currentProducts(products)}
+                    data={products}
                 />
             </Suspense>
-            <Paginate data={products} pageSize={pageSize} />
         </div>
     );
 };

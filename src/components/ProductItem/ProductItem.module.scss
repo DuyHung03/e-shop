@@ -1,0 +1,33 @@
+.wrapper {
+    height: 280px;
+    display: flex;
+    flex-direction: column;
+    background-color: #fff;
+    padding: 8px 8px;
+    border-radius: 12px;
+    transition: 0.2s;
+
+    &:hover {
+        background-color: #e6e5e5;
+    }
+
+    .image {
+        width: 160px;
+        height: 160px;
+        border-radius: 10px;
+        display: block;
+        margin: 0 auto;
+    }
+    .name {
+        width: 140px;
+        height: 36px;
+        overflow: hidden;
+        margin: 8px 0;
+        font-size: 16px;
+    }
+    .price {
+        font-size: 18px;
+        margin: 8px 0;
+        color: #ff0303;
+    }
+}

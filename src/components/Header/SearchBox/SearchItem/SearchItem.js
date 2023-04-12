@@ -1,34 +1,13 @@
-import React, { useState } from 'react';
+import React from 'react';
 import classNames from 'classnames/bind';
 import styles from './SearchItem.module.scss';
+import Image from '../../../Image/Image';
 
 const cx = classNames.bind(styles);
-
 const SearchItem = ({ src, title, fallbackSrc }) => {
-    const [imageLoaded, setImageLoaded] = useState(false);
-    const [imageError, setImageError] = useState(false);
-
-    const handleImageLoad = () => {
-        setImageLoaded(true);
-    };
-
-    const handleImageError = () => {
-        setTimeout(() => {
-            setImageError(true);
-        }, 5000);
-    };
     return (
         <div className={cx('wrapper')}>
-            {imageLoaded && !imageError ? (
-                <img
-                    src={src}
-                    alt=""
-                    onError={handleImageError}
-                    onLoad={handleImageLoad}
-                />
-            ) : (
-                <img src={fallbackSrc} alt="fallbackImg" />
-            )}
+            <Image src={src} fallbackSrc={fallbackSrc} />
             <p>{title}</p>
         </div>
     );

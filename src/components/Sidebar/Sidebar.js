@@ -13,7 +13,7 @@ const Catergories = lazy(() =>
 
 const cx = classNames.bind(styles);
 
-const Sidebar = () => {
+const Sidebar = ({ className }) => {
     const [catergories, setCatergories] = useState([]);
     useEffect(() => {
         const callAPI = async () => {
@@ -24,7 +24,7 @@ const Sidebar = () => {
         callAPI();
     }, []);
     return (
-        <div className={cx('wrapper')}>
+        <div className={cx('wrapper', className)}>
             <p>Catergories</p>
             {catergories.map((res) => (
                 <Suspense

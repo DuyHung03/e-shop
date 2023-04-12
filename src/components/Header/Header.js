@@ -11,9 +11,11 @@ const cx = classNames.bind(styles);
 const Header = () => {
     return (
         <div className={cx('wrapper')}>
-            <Icon width={60} src={Images.logo} />
-            <SearchBox />
-            <Actions />
+            <div className={cx('content')}>
+                <Icon width={60} src={Images.logo} />
+                <SearchBox />
+                <Actions />
+            </div>
         </div>
     );
 };

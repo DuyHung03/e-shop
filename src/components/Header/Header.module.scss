@@ -1,12 +1,19 @@
 .wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
     position: fixed;
     width: 100%;
     max-width: 100%;
     padding: 16px 40px;
     background: #2b3467;
     z-index: 10;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    flex-direction: row;
+
+    .content {
+        width: 1200px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        flex-direction: row;
+    }
 }
