@@ -19,17 +19,15 @@ import { AuthContext } from '../context/AuthProvider';
  * for real-time updates to the collection and updates the `cart` state variable accordingly.
  */
 export const useFirestore = (field) => {
-    const {
-        user: { uid },
-    } = useContext(AuthContext);
+    const { user } = useContext(AuthContext);
 
     const [cart, setCart] = useState([]);
 
     useEffect(() => {
-        if (uid) {
+        if (user && user.uid) {
             const q = query(
                 collection(db, field),
-                where('user', '==', uid),
+                where('user', '==', user.uid),
             );
             let unsubcribed = onSnapshot(q, (snapshot) => {
                 const data = snapshot.docs.map((doc) => ({
@@ -43,7 +41,7 @@ export const useFirestore = (field) => {
         } else {
             setCart([]);
         }
-    }, [field, uid]);
+    }, [field, user]);
 
     return cart;
 };
