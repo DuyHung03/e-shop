@@ -1,11 +1,11 @@
 import { request } from '../utils/httpRequest';
 
-const getCatergories = async () => {
+const getCatergories = async (limit) => {
     try {
         const res = await request.get('categories', {
             method: 'GET',
             params: {
-                limit: 10,
+                limit: limit,
             },
         });
         return res.data;

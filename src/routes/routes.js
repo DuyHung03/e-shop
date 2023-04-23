@@ -25,7 +25,7 @@ export const PublicRoutes = [
         isSideBar: true,
     },
     {
-        path: '/cart',
+        path: '/cart/:uid',
         element: Cart,
     },
     {

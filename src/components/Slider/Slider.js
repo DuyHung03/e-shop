@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useCallback, useState } from 'react';
 import Image from '../Image/Image';
 import { Images } from '../../assets/images';
 import classNames from 'classnames/bind';
@@ -22,27 +22,29 @@ const cx = classNames.bind(styles);
  * displays
  */
 const Slider = ({ images, className }) => {
-    /* This code is defining a state variable `currentIndex` and a function `setCurrentIndex` to update
-    it using the `useState` hook. The initial value of `currentIndex` is set to 0. */
     const [currentIndex, setCurrentIndex] = useState(0);
 
-    const handlePrevClick = () => {
+    /* These are two functions defined using the `useCallback` hook. They are used as click event
+    handlers for the previous and next buttons in the `Slider` component. */
+    const handlePrevClick = useCallback(() => {
         setCurrentIndex(
             currentIndex === 0
                 ? images.length - 1
                 : currentIndex - 1,
         );
         console.log(currentIndex);
-    };
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [currentIndex, setCurrentIndex]);
 
-    const handleNextClick = () => {
+    const handleNextClick = useCallback(() => {
         setCurrentIndex(
             currentIndex === images.length - 1
                 ? 0
                 : currentIndex + 1,
         );
         console.log(currentIndex);
-    };
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [currentIndex, setCurrentIndex]);
 
     return (
         <div className={cx('wrapper', className)}>

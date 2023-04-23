@@ -1,6 +1,7 @@
 import React, { Suspense, lazy, useEffect } from 'react';
 import { useContext } from 'react';
 import { AppContext } from '../../context/AppProvider';
+import Loading from '../../components/Loading/Loading';
 const ProductList = lazy(() =>
     import('../../components/ProductList/ProductList'),
 );
@@ -33,9 +34,7 @@ const Search = () => {
                 <div>Cannot found products</div>
             ) : (
                 <>
-                    <Suspense
-                        fallback={<div>Loading...</div>}
-                    >
+                    <Suspense fallback={<Loading />}>
                         <ProductList
                             cutData={currentProducts(
                                 searchAllResult,

@@ -7,13 +7,12 @@ import React, {
 } from 'react';
 import searchProduct from '../../services/searchProduct';
 import { AppContext } from '../../context/AppProvider';
-import Paginate from '../../components/Pagination/Pagination';
 const ProductList = lazy(() =>
     import('../../components/ProductList/ProductList'),
 );
 
 const Home = () => {
-    const { currentPage, pageSize, currentProducts } =
+    const { currentPage, currentProducts } =
         useContext(AppContext);
 
     const [products, setProducts] = useState([]);

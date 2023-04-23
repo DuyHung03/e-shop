@@ -22,7 +22,6 @@
             white-space: nowrap;
             text-overflow: ellipsis;
             margin-bottom: 30px;
-            flex-grow: 2;
 
             p {
                 width: 520px;
@@ -36,12 +35,61 @@
             display: flex;
             flex-grow: 1;
             flex-direction: row;
-            justify-content: center;
             align-items: center;
+            font-size: 24px;
+
+            p {
+                font-size: 16px;
+                font-weight: 300;
+                margin-right: 16px;
+            }
+
+            .increase,
+            .decrease {
+                width: 44px;
+                height: 44px;
+                border-radius: 100rem;
+                padding: 8px;
+
+                &:hover {
+                    background-color: #ddd;
+                }
+            }
+
+            span {
+                margin: 0 8px;
+            }
         }
 
         .handler {
+            display: flex;
+            flex-direction: row;
             flex-grow: 1;
+
+            .pay-btn,
+            .add-cart-btn {
+                width: 130px;
+                height: 50px;
+                justify-content: center;
+                align-items: center;
+                color: #fff;
+                border-radius: 10px;
+                transition: 0.2s;
+            }
+
+            .add-cart-btn {
+                background-color: #2b3467;
+
+                &:hover {
+                    background-color: #4e6e81;
+                }
+            }
+            .pay-btn {
+                background-color: #ff0303;
+                &:hover {
+                    background-color: #ce5959;
+                }
+            }
         }
     }
 }

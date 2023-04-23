@@ -14,6 +14,7 @@ import { addDocs } from '../firebase/addDocs';
 import { auth } from '../firebase/firebase';
 import useDebounce from '../hooks/useDebounce';
 import searchProduct from '../services/searchProduct';
+import { useFirestore } from '../hooks/useFirestore';
 
 export const AppContext = createContext();
 
@@ -210,7 +211,14 @@ const AppProvider = ({ children }) => {
             'currentProduct',
             JSON.stringify(prd),
         );
+        console.log(currentProduct);
     };
+
+    //*Quantity in product page
+    const [quantity, setQuantity] = useState(1);
+
+    //* Get products of user added with custom hook
+    const cart = useFirestore('cart');
 
     return (
         <AppContext.Provider
@@ -231,6 +239,9 @@ const AppProvider = ({ children }) => {
                 setSearchAllResult,
                 setCurrentPage,
                 currentProducts,
+                setQuantity,
+                cart,
+                quantity,
                 currentPage,
                 pageSize,
                 showResult,

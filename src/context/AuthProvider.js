@@ -35,6 +35,7 @@ const AuthProvider = ({ children }) => {
         return unsubcribed;
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
+
     return (
         <AuthContext.Provider
             value={{

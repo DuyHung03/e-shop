@@ -11,11 +11,14 @@ import {
 import { AuthContext } from '../../../context/AuthProvider';
 import Menu from '../../Menu/Menu';
 import { Images } from '../../../assets/images';
+import { AppContext } from '../../../context/AppProvider';
 
 const cx = classNames.bind(styles);
 
 const Actions = () => {
     const { user } = useContext(AuthContext);
+    const { cart } = useContext(AppContext);
+
     return (
         <div className={cx('wrapper')}>
             {user ? (
@@ -61,13 +64,18 @@ const Actions = () => {
             <Button
                 className={cx('cart-button')}
                 actionType
-                to="/cart"
+                //* CHECK USER LOGGED IN
+                to={!user ? '/login' : `/cart/${user.uid}`}
                 leftIcon={
                     <FontAwesomeIcon
                         icon={faCartShopping}
                     />
                 }
-            />
+            >
+                <span className={cx('quantity')}>
+                    {cart.length}
+                </span>
+            </Button>
         </div>
     );
 };

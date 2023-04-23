@@ -1,7 +1,7 @@
 import React, {
+    useCallback,
     useContext,
     useEffect,
-    useState,
 } from 'react';
 import { AppContext } from '../../context/AppProvider';
 import classNames from 'classnames/bind';
@@ -16,11 +16,19 @@ import {
 import { faCreditCard } from '@fortawesome/free-regular-svg-icons';
 import Slider from '../../components/Slider/Slider';
 import { Images } from '../../assets/images';
+import { addDocs } from '../../firebase/addDocs';
+import { AuthContext } from '../../context/AuthProvider';
 const cx = classNames.bind(styles);
 
 const Product = () => {
-    const { currentProduct, setCurrentProduct } =
-        useContext(AppContext);
+    const {
+        currentProduct,
+        setCurrentProduct,
+        quantity,
+        setQuantity,
+    } = useContext(AppContext);
+
+    const { user } = useContext(AuthContext);
 
     /* This is a React hook called `useEffect` that is used to perform side effects in a functional
     component. In this case, it is retrieving the `currentProduct` item from local storage, parsing
@@ -36,7 +44,32 @@ const Product = () => {
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
-    const [quantity, setQuantity] = useState(1);
+    //Handle increase and decrease quantity in product page
+    const handleIncrease = useCallback(() => {
+        setQuantity((prevQuantity) => prevQuantity + 1);
+        console.log(quantity);
+    }, [setQuantity, quantity]);
+
+    const handleDecrease = useCallback(() => {
+        setQuantity((prevQuantity) =>
+            prevQuantity > 1 ? prevQuantity - 1 : 1,
+        );
+        console.log(quantity);
+    }, [setQuantity, quantity]);
+
+    /* `handleAddToCart` is a function that is called when the user clicks on the "Add to cart"
+    button. It checks if there is a logged-in user and if so, it adds the current product along
+    with the selected quantity to the user's cart in the Firestore database using the `addDocs`
+    function. If there is no logged-in user, it redirects the user to the login page. */
+    const handleAddToCart = () => {
+        if (user) {
+            addDocs('cart', {
+                user: user.uid,
+                currentProduct,
+                quantity: quantity,
+            });
+        }
+    };
 
     return (
         <div className={cx('wrapper')}>
@@ -56,11 +89,18 @@ const Product = () => {
                 </div>
 
                 <div className={cx('quantity')}>
-                    <Button>
+                    <p>Quantity: </p>
+                    <Button
+                        className={cx('increase')}
+                        onClick={handleIncrease}
+                    >
                         <FontAwesomeIcon icon={faPlus} />
                     </Button>
-                    <p>{quantity}</p>
-                    <Button>
+                    <span>{quantity}</span>
+                    <Button
+                        className={cx('decrease')}
+                        onClick={handleDecrease}
+                    >
                         <FontAwesomeIcon
                             icon={faSubtract}
                         />
@@ -69,15 +109,9 @@ const Product = () => {
 
                 <div className={cx('handler')}>
                     <Button
-                        leftIcon={
-                            <FontAwesomeIcon
-                                icon={faCreditCard}
-                            />
-                        }
-                    >
-                        Buy now
-                    </Button>
-                    <Button
+                        to={!user ? '/login' : ''}
+                        onClick={handleAddToCart}
+                        className={cx('add-cart-btn')}
                         leftIcon={
                             <FontAwesomeIcon
                                 icon={faCartPlus}
@@ -85,6 +119,16 @@ const Product = () => {
                         }
                     >
                         Add to cart
+                    </Button>
+                    <Button
+                        className={cx('pay-btn')}
+                        leftIcon={
+                            <FontAwesomeIcon
+                                icon={faCreditCard}
+                            />
+                        }
+                    >
+                        Buy now
                     </Button>
                 </div>
             </div>

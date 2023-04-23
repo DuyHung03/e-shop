@@ -9,7 +9,7 @@ import { db } from './firebase';
  * collection. The spread operator `...` is used to spread the properties of the `data` object into the
  * new object being created.
  */
-export const addDocs = async (field, data) => {
+export const addDocs = async (field, data = {}) => {
     const docRef = await addDoc(collection(db, field), {
         ...data,
     });
