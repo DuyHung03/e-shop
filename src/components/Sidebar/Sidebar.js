@@ -13,6 +13,7 @@ import {
     faChevronDown,
     faChevronUp,
 } from '@fortawesome/free-solid-svg-icons';
+import SkeletonButton from 'antd/es/skeleton/Button';
 const Catergories = lazy(() =>
     import('../Catergories/Catergories'),
 );
@@ -33,7 +34,6 @@ const Sidebar = ({ className }) => {
     const callAPI = async (limit) => {
         const res = await getCatergories(limit);
         setCatergories(res);
-        console.log(res);
     };
     useEffect(() => {
         callAPI(10);
@@ -45,22 +45,20 @@ const Sidebar = ({ className }) => {
      */
     const handleSeeMoreCatergories = () => {
         callAPI(0);
-        setTimeout(() => {
-            setShowMoreButton(false);
-        }, 1000);
+        setShowMoreButton(false);
     };
     const handleSeeLessCatergories = () => {
         callAPI(10);
-        setTimeout(() => {
-            setShowMoreButton(true);
-        }, 1000);
+        setShowMoreButton(true);
     };
     return (
         <div className={cx('wrapper', className)}>
             <p>Catergories</p>
             {catergories.map((res) => (
                 <Suspense
-                    fallback={<div>...</div>}
+                    fallback={
+                        <SkeletonButton active block />
+                    }
                     key={res.id}
                 >
                     <Catergories catergoryData={res}>

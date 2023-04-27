@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useCallback, useContext } from 'react';
 import styles from './Actions.module.scss';
 import classNames from 'classnames/bind';
 
@@ -12,12 +12,23 @@ import { AuthContext } from '../../../context/AuthProvider';
 import Menu from '../../Menu/Menu';
 import { Images } from '../../../assets/images';
 import { AppContext } from '../../../context/AppProvider';
+import { Badge, Tooltip } from 'antd';
 
 const cx = classNames.bind(styles);
 
 const Actions = () => {
     const { user } = useContext(AuthContext);
     const { cart } = useContext(AppContext);
+
+    const getTotalQuantity = useCallback((cart = []) => {
+        let totalQuantity = 0;
+        cart.forEach((prd) => {
+            totalQuantity += prd.quantity;
+        });
+        return totalQuantity;
+    }, []);
+
+    const totalQuantity = getTotalQuantity(cart);
 
     return (
         <div className={cx('wrapper')}>
@@ -48,34 +59,48 @@ const Actions = () => {
                     </span>
                 </Menu>
             ) : (
-                <Button
-                    className={cx('log-button')}
-                    actionType
-                    leftIcon={
-                        <FontAwesomeIcon
-                            icon={faRightToBracket}
-                        />
-                    }
-                    to="/login"
+                <Tooltip
+                    title="Log in"
+                    placement="bottomRight"
+                    mouseEnterDelay={1}
                 >
-                    LogIn
-                </Button>
+                    <Button
+                        className={cx('log-button')}
+                        actionType
+                        leftIcon={
+                            <FontAwesomeIcon
+                                icon={faRightToBracket}
+                            />
+                        }
+                        to="/login"
+                    >
+                        LogIn
+                    </Button>
+                </Tooltip>
             )}
-            <Button
-                className={cx('cart-button')}
-                actionType
-                //* CHECK USER LOGGED IN
-                to={!user ? '/login' : `/cart/${user.uid}`}
-                leftIcon={
-                    <FontAwesomeIcon
-                        icon={faCartShopping}
-                    />
-                }
+            <Tooltip
+                title="Cart"
+                placement="bottomRight"
+                mouseEnterDelay={1}
             >
-                <span className={cx('quantity')}>
-                    {cart.length}
-                </span>
-            </Button>
+                <Badge count={totalQuantity}>
+                    <Button
+                        className={cx('cart-button')}
+                        actionType
+                        //* CHECK USER LOGGED IN
+                        to={
+                            !user
+                                ? '/login'
+                                : `/cart/${user.uid}`
+                        }
+                        leftIcon={
+                            <FontAwesomeIcon
+                                icon={faCartShopping}
+                            />
+                        }
+                    ></Button>
+                </Badge>
+            </Tooltip>
         </div>
     );
 };

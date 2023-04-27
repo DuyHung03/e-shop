@@ -43,7 +43,6 @@ const SearchBox = () => {
     const handleSearchByKeyword = async () => {
         setShowResult(false);
         const res = await searchProduct(debounce);
-        console.log(res);
         setSearchAllResult(res);
         localStorage.setItem(
             'searchAllResult',

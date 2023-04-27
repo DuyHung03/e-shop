@@ -30,14 +30,12 @@ const SignUpForm = () => {
         const email = e.target.value;
         e.preventDefault();
         setEmail(validator.trim(email));
-        console.log(email);
     };
 
     const handlePassword = (e) => {
         const password = e.target.value;
         e.preventDefault();
         setPassword(validator.trim(password));
-        console.log(password);
     };
     const handleName = (e) => {
         const name = e.target.value;
@@ -61,7 +59,6 @@ const SignUpForm = () => {
                     updateProfile(userCredential.user, {
                         displayName: name,
                     });
-                    console.log(userCredential.user);
                     navigate('/login');
                 })
 

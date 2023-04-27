@@ -134,7 +134,6 @@ const AppProvider = ({ children }) => {
         if (!searchValue.startsWith(' ')) {
             setSearchValue(searchValue);
         }
-        console.log(searchValue);
     };
 
     const handleHideResult = () => {
@@ -174,7 +173,6 @@ const AppProvider = ({ children }) => {
                 currentPage,
                 10,
             );
-            console.log(res);
             setSearchResult(res);
             setLoading(false);
         };
@@ -211,7 +209,6 @@ const AppProvider = ({ children }) => {
             'currentProduct',
             JSON.stringify(prd),
         );
-        console.log(currentProduct);
     };
 
     //*Quantity in product page
@@ -219,6 +216,11 @@ const AppProvider = ({ children }) => {
 
     //* Get products of user added with custom hook
     const cart = useFirestore('cart');
+
+    //*Total price to pay in cart page
+    const [total, setTotal] = useState(0);
+    const [selected, setSelected] = useState(0);
+    const [isChecked, setIsChecked] = useState(false);
 
     return (
         <AppContext.Provider
@@ -240,6 +242,12 @@ const AppProvider = ({ children }) => {
                 setCurrentPage,
                 currentProducts,
                 setQuantity,
+                setTotal,
+                setSelected,
+                setIsChecked,
+                isChecked,
+                selected,
+                total,
                 cart,
                 quantity,
                 currentPage,

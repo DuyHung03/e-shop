@@ -22,17 +22,6 @@
         }
     }
     .cart-button {
-        position: relative;
-        .quantity {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            position: absolute;
-            top: 0;
-            width: 24px;
-            height: 24px;
-            background-color: #ce5959;
-            border-radius: 100rem;
-        }
+        padding-left: 16px;
     }
 }

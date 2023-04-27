@@ -24,7 +24,6 @@ const Catergories = ({ catergoryData, children }) => {
             currentPage,
         );
         setSearchAllResult(res);
-        console.log(res);
         if (res.length > 0) {
             localStorage.setItem(
                 'searchAllResult',

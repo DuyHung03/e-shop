@@ -35,7 +35,6 @@ export const useFirestore = (field) => {
                     ...doc.data(),
                 }));
                 setCart(data);
-                console.log(data);
             });
             return unsubcribed;
         } else {

@@ -71,7 +71,6 @@ const Login = () => {
                     });
                 }
 
-                console.log(user);
                 setUser(user);
             })
             .catch((error) => {

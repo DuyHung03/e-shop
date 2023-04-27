@@ -6,4 +6,5 @@ export const Images = {
         'https://media.istockphoto.com/id/1441884915/photo/interior.jpg?s=170667a&w=0&k=20&c=4hqwj1M-UcXPj6FFZ82wQQ3eiSV7a5SwGdWYoXgf840=',
     googleLogo: require('../images/icons8-google.svg'),
     facebookLogo: require('../images/icons8-facebook.svg'),
+    emptyBox: require('../images/empty-box.png'),
 };

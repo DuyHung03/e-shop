@@ -25,8 +25,11 @@ const AuthProvider = ({ children }) => {
                 if (user) {
                     setUser(user);
                     setLoading(false);
-                    navigate('/');
-                    console.log(user);
+                    if (
+                        window.location.pathname ===
+                        '/login'
+                    )
+                        navigate('/');
                 } else {
                     setLoading(false);
                 }
@@ -34,7 +37,7 @@ const AuthProvider = ({ children }) => {
         );
         return unsubcribed;
         // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, []);
+    }, [user]);
 
     return (
         <AuthContext.Provider

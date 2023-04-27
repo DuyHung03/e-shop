@@ -32,7 +32,6 @@ const Slider = ({ images, className }) => {
                 ? images.length - 1
                 : currentIndex - 1,
         );
-        console.log(currentIndex);
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [currentIndex, setCurrentIndex]);
 
@@ -42,7 +41,6 @@ const Slider = ({ images, className }) => {
                 ? 0
                 : currentIndex + 1,
         );
-        console.log(currentIndex);
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [currentIndex, setCurrentIndex]);
 

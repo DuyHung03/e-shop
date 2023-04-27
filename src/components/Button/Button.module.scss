@@ -25,7 +25,6 @@
 .actionType {
     color: #fcffe7;
     font-size: 24px;
-    padding: 16px 20px;
     margin-left: 16px;
     border-radius: 50%;
     opacity: 0.8;
@@ -39,4 +38,8 @@
     :hover {
         color: #2b3467;
     }
+}
+
+.disable {
+    cursor: not-allowed;
 }

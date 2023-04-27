@@ -18,6 +18,15 @@ import Slider from '../../components/Slider/Slider';
 import { Images } from '../../assets/images';
 import { addDocs } from '../../firebase/addDocs';
 import { AuthContext } from '../../context/AuthProvider';
+import {
+    collection,
+    getDocs,
+    query,
+    updateDoc,
+    where,
+} from 'firebase/firestore';
+import { db } from '../../firebase/firebase';
+import { message } from 'antd';
 const cx = classNames.bind(styles);
 
 const Product = () => {
@@ -40,99 +49,138 @@ const Product = () => {
             localStorage.getItem('currentProduct' || ''),
         );
         setCurrentProduct(productItem);
-        console.log(currentProduct.images);
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
     //Handle increase and decrease quantity in product page
     const handleIncrease = useCallback(() => {
         setQuantity((prevQuantity) => prevQuantity + 1);
-        console.log(quantity);
-    }, [setQuantity, quantity]);
+    }, [setQuantity]);
 
     const handleDecrease = useCallback(() => {
         setQuantity((prevQuantity) =>
             prevQuantity > 1 ? prevQuantity - 1 : 1,
         );
-        console.log(quantity);
-    }, [setQuantity, quantity]);
+    }, [setQuantity]);
 
-    /* `handleAddToCart` is a function that is called when the user clicks on the "Add to cart"
-    button. It checks if there is a logged-in user and if so, it adds the current product along
-    with the selected quantity to the user's cart in the Firestore database using the `addDocs`
-    function. If there is no logged-in user, it redirects the user to the login page. */
-    const handleAddToCart = () => {
+    //*Notification antd
+    const [messageApi, contextHolder] =
+        message.useMessage();
+    const showMessage = () => {
+        messageApi.open({
+            type: 'success',
+            duration: 2,
+            content: 'Add Successfully!',
+        });
+    };
+
+    /**
+     * This function adds a product to the user's cart in a Firestore database, updating the quantity
+     * if the product is already in the cart.
+     */
+    const handleAddToCart = async () => {
         if (user) {
-            addDocs('cart', {
-                user: user.uid,
-                currentProduct,
-                quantity: quantity,
-            });
+            const querySnapshot = await getDocs(
+                query(
+                    //query user and product existed
+                    collection(db, 'cart'),
+                    where('user', '==', user.uid),
+                    where(
+                        'product.id',
+                        '==',
+                        currentProduct.id,
+                    ),
+                ),
+            );
+            if (querySnapshot.size > 0) {
+                const docRef = querySnapshot.docs[0].ref;
+                await updateDoc(docRef, {
+                    quantity:
+                        quantity +
+                        querySnapshot.docs[0].data()
+                            .quantity,
+                });
+                showMessage();
+                console.log('updated');
+            } else {
+                await addDocs('cart', {
+                    user: user.uid,
+                    product: currentProduct,
+                    quantity: quantity,
+                });
+                showMessage();
+                console.log('addDocs');
+            }
         }
     };
 
     return (
-        <div className={cx('wrapper')}>
-            <Slider
-                images={
-                    !currentProduct.images
-                        ? Images.noProductImage
-                        : currentProduct.images
-                }
-                className={cx('slider')}
-            />
+        <>
+            {contextHolder}
+            <div className={cx('wrapper')}>
+                <Slider
+                    images={
+                        !currentProduct.images
+                            ? Images.noProductImage
+                            : currentProduct.images
+                    }
+                    className={cx('slider')}
+                />
 
-            <div className={cx('information')}>
-                <div className={cx('name')}>
-                    {currentProduct.title}
-                    <p>{currentProduct.description}</p>
-                </div>
+                <div className={cx('information')}>
+                    <div className={cx('name')}>
+                        {currentProduct.title}
+                        <p>{currentProduct.description}</p>
+                    </div>
 
-                <div className={cx('quantity')}>
-                    <p>Quantity: </p>
-                    <Button
-                        className={cx('increase')}
-                        onClick={handleIncrease}
-                    >
-                        <FontAwesomeIcon icon={faPlus} />
-                    </Button>
-                    <span>{quantity}</span>
-                    <Button
-                        className={cx('decrease')}
-                        onClick={handleDecrease}
-                    >
-                        <FontAwesomeIcon
-                            icon={faSubtract}
-                        />
-                    </Button>
-                </div>
-
-                <div className={cx('handler')}>
-                    <Button
-                        to={!user ? '/login' : ''}
-                        onClick={handleAddToCart}
-                        className={cx('add-cart-btn')}
-                        leftIcon={
+                    <div className={cx('quantity')}>
+                        <p>Quantity: </p>
+                        <Button
+                            className={cx('increase')}
+                            onClick={handleIncrease}
+                        >
                             <FontAwesomeIcon
-                                icon={faCartPlus}
+                                icon={faPlus}
                             />
-                        }
-                    >
-                        Add to cart
-                    </Button>
-                    <Button
-                        className={cx('pay-btn')}
-                        leftIcon={
+                        </Button>
+                        <span>{quantity}</span>
+                        <Button
+                            className={cx('decrease')}
+                            onClick={handleDecrease}
+                        >
                             <FontAwesomeIcon
-                                icon={faCreditCard}
+                                icon={faSubtract}
                             />
-                        }
-                    >
-                        Buy now
-                    </Button>
+                        </Button>
+                    </div>
+
+                    <div className={cx('handler')}>
+                        <Button
+                            to={!user ? '/login' : ''}
+                            onClick={handleAddToCart}
+                            className={cx('add-cart-btn')}
+                            leftIcon={
+                                <FontAwesomeIcon
+                                    icon={faCartPlus}
+                                />
+                            }
+                        >
+                            Add to cart
+                        </Button>
+                        <Button
+                            className={cx('pay-btn')}
+                            leftIcon={
+                                <FontAwesomeIcon
+                                    icon={faCreditCard}
+                                />
+                            }
+                        >
+                            Buy now
+                        </Button>
+                    </div>
                 </div>
             </div>
-        </div>
+        </>
     );
 };
 

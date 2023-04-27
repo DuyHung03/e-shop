@@ -17,7 +17,6 @@ const Paginate = ({ data = [], pageSize, className }) => {
         window.scrollTo({
             top: 0,
         });
-        console.log(currentPage);
     };
 
     return (

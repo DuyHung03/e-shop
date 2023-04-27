@@ -10,6 +10,7 @@ const Button = ({
     //*TYPES
     actionType,
     menuType,
+    disable,
     //*
     leftIcon,
     rightIcon,
@@ -34,6 +35,7 @@ const Button = ({
             rightIcon,
             actionType,
             menuType,
+            disable,
         },
         className,
     );
@@ -61,6 +63,7 @@ const Button = ({
             className={classes}
             {...props}
             type="submit"
+            disabled={disable}
         >
             {leftIcon && (
                 <span className={cx('icon')}>

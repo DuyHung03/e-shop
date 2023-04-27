@@ -47,6 +47,7 @@ const ModalResetPassword = () => {
                 value={email}
                 onChange={handleEmail}
                 placeholder="Enter Your Email "
+                style={{ width: '100%' }}
             />
         </Modal>
     );

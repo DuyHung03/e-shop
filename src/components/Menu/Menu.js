@@ -22,8 +22,8 @@ const Menu = ({ children }) => {
 
     const { setSearchValue } = useContext(AppContext);
 
-    const handleLogOut = () => {
-        auth.signOut();
+    const handleLogOut = async () => {
+        await auth.signOut();
         navigate('/');
         setUser();
         setSearchValue('');

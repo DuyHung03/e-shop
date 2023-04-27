@@ -30,7 +30,6 @@ const Home = () => {
                 0,
             );
             setProducts(res);
-            console.log(res.length);
         };
         callAPI();
         // eslint-disable-next-line react-hooks/exhaustive-deps

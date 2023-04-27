@@ -1,12 +1,10 @@
-import React, { Suspense, lazy, useContext } from 'react';
+import React, { useContext } from 'react';
 import { Link } from 'react-router-dom';
 import classNames from 'classnames/bind';
 import styles from './ProductList.module.scss';
 import ProductItem from '../ProductItem/ProductItem';
 import { AppContext } from '../../context/AppProvider';
-const Paginate = lazy(() =>
-    import('../Pagination/Pagination'),
-);
+import Paginate from '../Pagination/Pagination';
 
 const cx = classNames.bind(styles);
 
@@ -35,13 +33,11 @@ const ProductList = ({ data, cutData }) => {
                     </Link>
                 ))}
             </div>
-            <Suspense fallback={<div>...</div>}>
-                <Paginate
-                    className={cx('pagination')}
-                    data={data}
-                    pageSize={pageSize}
-                />
-            </Suspense>
+            <Paginate
+                className={cx('pagination')}
+                data={data}
+                pageSize={pageSize}
+            />
         </>
     );
 };
