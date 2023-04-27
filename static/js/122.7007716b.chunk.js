@@ -1,0 +1,2 @@
+"use strict";(self.webpackChunke_shop=self.webpackChunke_shop||[]).push([[122],{4122:function(s,c,e){e.r(c);e(2791);var a=e(184);c.default=function(s){var c=s.src,e=s.className,n=s.onClick;return(0,a.jsx)("img",{src:c,className:e,onClick:n,alt:""})}}}]);
+//# sourceMappingURL=122.7007716b.chunk.js.map
