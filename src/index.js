@@ -4,7 +4,7 @@ import { BrowserRouter } from 'react-router-dom';
 import App from './App';
 import GlobalStyles from './components/GlobalStyles';
 
-const routerBaseName = process.env.PUBLIC_URL;
+const routerBaseName = process.env.REACT_APP_PUBLIC_URL;
 
 const root = ReactDOM.createRoot(
     document.getElementById('root'),
