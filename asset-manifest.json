@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/e-shop/static/css/main.737b946b.css",
-    "main.js": "/e-shop/static/js/main.04c0aefb.js",
+    "main.js": "/e-shop/static/js/main.c5a98053.js",
     "static/css/880.3a5a4585.chunk.css": "/e-shop/static/css/880.3a5a4585.chunk.css",
     "static/js/880.eecd5547.chunk.js": "/e-shop/static/js/880.eecd5547.chunk.js",
     "static/css/832.6f3ffee8.chunk.css": "/e-shop/static/css/832.6f3ffee8.chunk.css",
@@ -42,7 +42,7 @@
     "static/media/icons8-facebook.svg": "/e-shop/static/media/icons8-facebook.1d60f030f88d365627c35afd0f0f9d38.svg",
     "index.html": "/e-shop/index.html",
     "main.737b946b.css.map": "/e-shop/static/css/main.737b946b.css.map",
-    "main.04c0aefb.js.map": "/e-shop/static/js/main.04c0aefb.js.map",
+    "main.c5a98053.js.map": "/e-shop/static/js/main.c5a98053.js.map",
     "880.3a5a4585.chunk.css.map": "/e-shop/static/css/880.3a5a4585.chunk.css.map",
     "880.eecd5547.chunk.js.map": "/e-shop/static/js/880.eecd5547.chunk.js.map",
     "832.6f3ffee8.chunk.css.map": "/e-shop/static/css/832.6f3ffee8.chunk.css.map",
@@ -81,6 +81,6 @@
   },
   "entrypoints": [
     "static/css/main.737b946b.css",
-    "static/js/main.04c0aefb.js"
+    "static/js/main.c5a98053.js"
   ]
 }
