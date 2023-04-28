@@ -44,6 +44,9 @@ function App() {
                                                 path={
                                                     route.path
                                                 }
+                                                exact={
+                                                    route.exact
+                                                }
                                                 element={
                                                     <PageLayout
                                                         title={
