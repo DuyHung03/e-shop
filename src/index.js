@@ -4,13 +4,11 @@ import { BrowserRouter } from 'react-router-dom';
 import App from './App';
 import GlobalStyles from './components/GlobalStyles';
 
-const routerBaseName = process.env.REACT_APP_PUBLIC_URL;
-
 const root = ReactDOM.createRoot(
     document.getElementById('root'),
 );
 root.render(
-    <BrowserRouter basename={routerBaseName}>
+    <BrowserRouter basename={process.env.PUBLIC_URL}>
         <GlobalStyles>
             <App />
         </GlobalStyles>
