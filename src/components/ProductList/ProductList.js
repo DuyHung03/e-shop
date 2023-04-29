@@ -10,7 +10,7 @@ const cx = classNames.bind(styles);
 
 /**
  * The ProductList component renders a list of products and a pagination component.
- * @returns A React functional component that renders a list of products with links to their individual
+ * returns A React functional component that renders a list of products with links to their individual
  * pages and a pagination component. The component receives two props: `data` and `cutData`, which are
  * arrays of product objects. It also uses the `useContext` hook to access the
  * `handleSetCurrentProduct` function and `pageSize` value from the AppContext.
