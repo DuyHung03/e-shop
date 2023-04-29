@@ -48,6 +48,7 @@ const Product = () => {
         const productItem = JSON.parse(
             localStorage.getItem('currentProduct' || ''),
         );
+        console.log(productItem);
         setCurrentProduct(productItem);
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
