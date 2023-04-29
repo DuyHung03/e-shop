@@ -11,9 +11,9 @@ import { AuthContext } from '../context/AuthProvider';
 /**
  * The useFirestore function retrieves data from a Firestore collection based on the user's ID and
  * returns it as an array.
- * @param field - The "field" parameter is a string that represents the name of the collection in
+ * param field - The "field" parameter is a string that represents the name of the collection in
  * Firestore that the function will query.
- * @returns The `useFirestore` custom hook is returning the `cart` state variable, which is an array of
+ * returns The `useFirestore` custom hook is returning the `cart` state variable, which is an array of
  * objects representing the documents in the Firestore collection specified by the `field` parameter
  * and belonging to the currently authenticated user. The hook uses the `onSnapshot` function to listen
  * for real-time updates to the collection and updates the `cart` state variable accordingly.

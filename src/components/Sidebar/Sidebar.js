@@ -27,7 +27,7 @@ const Sidebar = ({ className }) => {
 
     /**
      * This function calls an API to retrieve categories and sets them using React's useState hook.
-     * @param limit - The `limit` parameter is a number that specifies the maximum number of categories
+     * param limit - The `limit` parameter is a number that specifies the maximum number of categories
      * to be returned by the `getCatergories` function. It is used in the `callAPI` function to fetch
      * categories and set them using the `setCatergories` function. In this case, the
      */

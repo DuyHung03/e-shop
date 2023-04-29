@@ -9,7 +9,7 @@ const Paginate = ({ data = [], pageSize, className }) => {
     /**
      * The function onPageChange sets the current page and scrolls to the top of the page while logging
      * the current page number.
-     * @param page - The parameter "page" is a variable that represents the new page number that the
+     * param page - The parameter "page" is a variable that represents the new page number that the
      * user has selected. It is passed as an argument to the onPageChange function.
      */
     const onPageChange = (page) => {

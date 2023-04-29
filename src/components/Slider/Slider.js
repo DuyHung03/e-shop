@@ -15,7 +15,7 @@ const cx = classNames.bind(styles);
 /**
  * The Slider component displays a set of images and allows the user to navigate between them using
  * previous and next buttons.
- * @returns A React functional component called `Slider` is being returned. It takes two props,
+ * returns A React functional component called `Slider` is being returned. It takes two props,
  * `images` and `className`. It renders a wrapper `div` element with three child elements: two `Button`
  * components and an `Image` component. The `Button` components have click event handlers that update
  * the `currentIndex` state variable using the `setCurrentIndex` function. The `Image` component

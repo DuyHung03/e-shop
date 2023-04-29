@@ -125,7 +125,7 @@ const AppProvider = ({ children }) => {
     /**
      * The function handles input value changes and sets the search value if it doesn't start with a
      * space.
-     * @param e - The parameter "e" is an event object that is passed to the function when it is
+     * param e - The parameter "e" is an event object that is passed to the function when it is
      * triggered by an event, such as a user typing in an input field. It contains information about
      * the event, such as the target element (in this case, the input field) and the value of the input
      */
@@ -198,7 +198,7 @@ const AppProvider = ({ children }) => {
     /**
      * The function sets the current product, hides the result, and saves the current product in local
      * storage.
-     * @param prd - The parameter `prd` is an object representing a product. It is passed as an
+     * param prd - The parameter `prd` is an object representing a product. It is passed as an
      * argument to the `handleSetCurrentProduct` function. The function sets the `currentProduct` state
      * to the value of `prd`, hides the result, and stores the `prd` object in the browser's local
      */
