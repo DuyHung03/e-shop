@@ -33,5 +33,5 @@ export const analytics = getAnalytics(app);
 export const auth = getAuth(app);
 export const db = getFirestore(app);
 
-connectAuthEmulator(auth, 'http://localhost:9099');
-connectFirestoreEmulator(db, 'localhost', 8080);
+// connectAuthEmulator(auth, 'http://localhost:9099');
+// connectFirestoreEmulator(db, 'localhost', 8080);

@@ -1,0 +1,118 @@
+[debug] [2023-11-24T01:53:20.954Z] ----------------------------------------------------------------------
+[debug] [2023-11-24T01:53:20.955Z] Command:       C:\Program Files\nodejs\node.exe C:\Users\vkksi\AppData\Roaming\npm\node_modules\firebase-tools\lib\bin\firebase.js emulators:start
+[debug] [2023-11-24T01:53:20.955Z] CLI Version:   11.24.1
+[debug] [2023-11-24T01:53:20.956Z] Platform:      win32
+[debug] [2023-11-24T01:53:20.956Z] Node Version:  v18.4.0
+[debug] [2023-11-24T01:53:20.968Z] Time:          Fri Nov 24 2023 08:53:20 GMT+0700 (Indochina Time)
+[debug] [2023-11-24T01:53:20.969Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2023-11-24T01:53:20.972Z] >>> [apiv2][query] GET https://firebase-public.firebaseio.com/cli.json [none]
+[debug] [2023-11-24T01:53:21.097Z] Object ".emulators.storage" in "firebase.json" has unknown property: {"additionalProperty":"rules"}
+[debug] [2023-11-24T01:53:21.104Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2023-11-24T01:53:21.104Z] > authorizing via signed-in user (vkksieunhan2003@gmail.com)
+[debug] [2023-11-24T01:53:21.391Z] java version "17.0.8" 2023-07-18 LTS
+
+[debug] [2023-11-24T01:53:21.392Z] Java(TM) SE Runtime Environment (build 17.0.8+9-LTS-211)
+Java HotSpot(TM) 64-Bit Server VM (build 17.0.8+9-LTS-211, mixed mode, sharing)
+
+[debug] [2023-11-24T01:53:21.420Z] Parsed Java major version: 17
+[info] i  emulators: Starting emulators: auth, functions, firestore, database, hosting, storage {"metadata":{"emulator":{"name":"hub"},"message":"Starting emulators: auth, functions, firestore, database, hosting, storage"}}
+[debug] [2023-11-24T01:53:21.440Z] [logging] Logging Emulator only supports listening on one address (127.0.0.1). Not listening on ::1
+[debug] [2023-11-24T01:53:21.441Z] [auth] Authentication Emulator only supports listening on one address (127.0.0.1). Not listening on ::1
+[debug] [2023-11-24T01:53:21.441Z] [firestore] Firestore Emulator only supports listening on one address (127.0.0.1). Not listening on ::1
+[debug] [2023-11-24T01:53:21.441Z] [firestore.websocket] websocket server for firestore only supports listening on one address (127.0.0.1). Not listening on ::1
+[debug] [2023-11-24T01:53:21.441Z] [database] Database Emulator only supports listening on one address (127.0.0.1). Not listening on ::1
+[debug] [2023-11-24T01:53:21.441Z] [hosting] Hosting Emulator only supports listening on one address (127.0.0.1). Not listening on ::1
+[debug] [2023-11-24T01:53:21.441Z] [storage] Storage Emulator only supports listening on one address (127.0.0.1). Not listening on ::1
+[debug] [2023-11-24T01:53:21.441Z] assigned listening specs for emulators {"user":{"hub":[{"address":"127.0.0.1","family":"IPv4","port":4400},{"address":"::1","family":"IPv6","port":4400}],"ui":[{"address":"127.0.0.1","family":"IPv4","port":4000},{"address":"::1","family":"IPv6","port":4000}],"logging":[{"address":"127.0.0.1","family":"IPv4","port":4500}],"auth":[{"address":"127.0.0.1","family":"IPv4","port":9099}],"firestore":[{"address":"127.0.0.1","family":"IPv4","port":8080}],"firestore.websocket":[{"address":"127.0.0.1","family":"IPv4","port":9150}],"database":[{"address":"127.0.0.1","family":"IPv4","port":9000}],"hosting":[{"address":"127.0.0.1","family":"IPv4","port":5000}],"storage":[{"address":"127.0.0.1","family":"IPv4","port":9199}]},"metadata":{"message":"assigned listening specs for emulators"}}
+[debug] [2023-11-24T01:53:21.453Z] [hub] writing locator at C:\Users\vkksi\AppData\Local\Temp\hub-e-shop-f05c0.json
+[debug] [2023-11-24T01:53:21.468Z] [functions] Functions Emulator only supports listening on one address (127.0.0.1). Not listening on ::1
+[debug] [2023-11-24T01:53:21.469Z] [eventarc] Eventarc Emulator only supports listening on one address (127.0.0.1). Not listening on ::1
+[debug] [2023-11-24T01:53:21.469Z] late-assigned ports for functions and eventarc emulators {"user":{"hub":[{"address":"127.0.0.1","family":"IPv4","port":4400},{"address":"::1","family":"IPv6","port":4400}],"ui":[{"address":"127.0.0.1","family":"IPv4","port":4000},{"address":"::1","family":"IPv6","port":4000}],"logging":[{"address":"127.0.0.1","family":"IPv4","port":4500}],"auth":[{"address":"127.0.0.1","family":"IPv4","port":9099}],"firestore":[{"address":"127.0.0.1","family":"IPv4","port":8080}],"firestore.websocket":[{"address":"127.0.0.1","family":"IPv4","port":9150}],"database":[{"address":"127.0.0.1","family":"IPv4","port":9000}],"hosting":[{"address":"127.0.0.1","family":"IPv4","port":5000}],"storage":[{"address":"127.0.0.1","family":"IPv4","port":9199}],"functions":[{"address":"127.0.0.1","family":"IPv4","port":5001}],"eventarc":[{"address":"127.0.0.1","family":"IPv4","port":9299}]},"metadata":{"message":"late-assigned ports for functions and eventarc emulators"}}
+[warn] !  functions: The following emulators are not running, calls to these services from the Functions emulator will affect production: pubsub {"metadata":{"emulator":{"name":"functions"},"message":"The following emulators are not running, calls to these services from the Functions emulator will affect production: \u001b[1mpubsub\u001b[22m"}}
+[debug] [2023-11-24T01:53:21.475Z] defaultcredentials: writing to file C:\Users\vkksi\AppData\Roaming\firebase\vkksieunhan2003_gmail_com_application_default_credentials.json
+[debug] [2023-11-24T01:53:21.477Z] Setting GAC to C:\Users\vkksi\AppData\Roaming\firebase\vkksieunhan2003_gmail_com_application_default_credentials.json {"metadata":{"emulator":{"name":"functions"},"message":"Setting GAC to C:\\Users\\vkksi\\AppData\\Roaming\\firebase\\vkksieunhan2003_gmail_com_application_default_credentials.json"}}
+[debug] [2023-11-24T01:53:21.478Z] > refreshing access token with scopes: []
+[debug] [2023-11-24T01:53:21.479Z] >>> [apiv2][query] POST https://www.googleapis.com/oauth2/v3/token [none]
+[debug] [2023-11-24T01:53:21.479Z] >>> [apiv2][body] POST https://www.googleapis.com/oauth2/v3/token [omitted]
+[debug] [2023-11-24T01:53:24.679Z] <<< [apiv2][status] POST https://www.googleapis.com/oauth2/v3/token 200
+[debug] [2023-11-24T01:53:24.679Z] <<< [apiv2][body] POST https://www.googleapis.com/oauth2/v3/token [omitted]
+[debug] [2023-11-24T01:53:24.690Z] >>> [apiv2][query] GET https://firebase.googleapis.com/v1beta1/projects/e-shop-f05c0/adminSdkConfig [none]
+[debug] [2023-11-24T01:53:25.046Z] <<< [apiv2][status] GET https://firebase-public.firebaseio.com/cli.json 200
+[debug] [2023-11-24T01:53:25.047Z] <<< [apiv2][body] GET https://firebase-public.firebaseio.com/cli.json {"cloudBuildErrorAfter":1594252800000,"cloudBuildWarnAfter":1590019200000,"defaultNode10After":1594252800000,"minVersion":"3.0.5","node8DeploysDisabledAfter":1613390400000,"node8RuntimeDisabledAfter":1615809600000,"node8WarnAfter":1600128000000}
+[debug] [2023-11-24T01:53:25.513Z] <<< [apiv2][status] GET https://firebase.googleapis.com/v1beta1/projects/e-shop-f05c0/adminSdkConfig 200
+[debug] [2023-11-24T01:53:25.514Z] <<< [apiv2][body] GET https://firebase.googleapis.com/v1beta1/projects/e-shop-f05c0/adminSdkConfig {"projectId":"e-shop-f05c0","databaseURL":"https://e-shop-f05c0-default-rtdb.asia-southeast1.firebasedatabase.app","storageBucket":"e-shop-f05c0.appspot.com","locationId":"asia-east2"}
+[debug] [2023-11-24T01:53:25.543Z] Ignoring unsupported arg: auto_download {"metadata":{"emulator":{"name":"firestore"},"message":"Ignoring unsupported arg: auto_download"}}
+[debug] [2023-11-24T01:53:25.543Z] Ignoring unsupported arg: single_project_mode_error {"metadata":{"emulator":{"name":"firestore"},"message":"Ignoring unsupported arg: single_project_mode_error"}}
+[debug] [2023-11-24T01:53:25.543Z] Starting Firestore Emulator with command {"binary":"java","args":["-Dgoogle.cloud_firestore.debug_log_level=FINE","-Duser.language=en","-jar","C:\\Users\\vkksi\\.cache\\firebase\\emulators\\cloud-firestore-emulator-v1.16.0.jar","--host","127.0.0.1","--port",8080,"--websocket_port",9150,"--project_id","e-shop-f05c0","--rules","D:\\e-shop\\firestore.rules","--single_project_mode",true,"--functions_emulator","127.0.0.1:5001"],"optionalArgs":["port","webchannel_port","host","rules","websocket_port","functions_emulator","seed_from_export","project_id","single_project_mode"],"joinArgs":false} {"metadata":{"emulator":{"name":"firestore"},"message":"Starting Firestore Emulator with command {\"binary\":\"java\",\"args\":[\"-Dgoogle.cloud_firestore.debug_log_level=FINE\",\"-Duser.language=en\",\"-jar\",\"C:\\\\Users\\\\vkksi\\\\.cache\\\\firebase\\\\emulators\\\\cloud-firestore-emulator-v1.16.0.jar\",\"--host\",\"127.0.0.1\",\"--port\",8080,\"--websocket_port\",9150,\"--project_id\",\"e-shop-f05c0\",\"--rules\",\"D:\\\\e-shop\\\\firestore.rules\",\"--single_project_mode\",true,\"--functions_emulator\",\"127.0.0.1:5001\"],\"optionalArgs\":[\"port\",\"webchannel_port\",\"host\",\"rules\",\"websocket_port\",\"functions_emulator\",\"seed_from_export\",\"project_id\",\"single_project_mode\"],\"joinArgs\":false}"}}
+[info] i  firestore: Firestore Emulator logging to firestore-debug.log {"metadata":{"emulator":{"name":"firestore"},"message":"Firestore Emulator logging to \u001b[1mfirestore-debug.log\u001b[22m"}}
+[info] +  firestore: Firestore Emulator UI websocket is running on 9150. {"metadata":{"emulator":{"name":"firestore"},"message":"Firestore Emulator UI websocket is running on 9150."}}
+[debug] [2023-11-24T01:53:28.135Z] >>> [apiv2][query] GET https://firebase.googleapis.com/v1beta1/projects/e-shop-f05c0 [none]
+[debug] [2023-11-24T01:53:28.578Z] <<< [apiv2][status] GET https://firebase.googleapis.com/v1beta1/projects/e-shop-f05c0 200
+[debug] [2023-11-24T01:53:28.579Z] <<< [apiv2][body] GET https://firebase.googleapis.com/v1beta1/projects/e-shop-f05c0 {"projectId":"e-shop-f05c0","projectNumber":"141282146145","displayName":"e-shop","name":"projects/e-shop-f05c0","resources":{"hostingSite":"e-shop-f05c0","realtimeDatabaseInstance":"e-shop-f05c0-default-rtdb","storageBucket":"e-shop-f05c0.appspot.com","locationId":"asia-east2"},"state":"ACTIVE","etag":"1_372a0ea8-cb8e-4e08-9ebb-ccc5f0287b93"}
+[debug] [2023-11-24T01:53:28.579Z] database rules config:  [{"instance":"e-shop-f05c0-default-rtdb","rules":"D:\\e-shop\\database.rules.json"}]
+[debug] [2023-11-24T01:53:28.595Z] Ignoring unsupported arg: projectId {"metadata":{"emulator":{"name":"database"},"message":"Ignoring unsupported arg: projectId"}}
+[debug] [2023-11-24T01:53:28.595Z] Ignoring unsupported arg: auto_download {"metadata":{"emulator":{"name":"database"},"message":"Ignoring unsupported arg: auto_download"}}
+[debug] [2023-11-24T01:53:28.595Z] Ignoring unsupported arg: rules {"metadata":{"emulator":{"name":"database"},"message":"Ignoring unsupported arg: rules"}}
+[debug] [2023-11-24T01:53:28.595Z] Starting Database Emulator with command {"binary":"java","args":["-Duser.language=en","-jar","C:\\Users\\vkksi\\.cache\\firebase\\emulators\\firebase-database-emulator-v4.11.0.jar","--host","127.0.0.1","--port",9000,"--single_project_mode","Warning","--functions_emulator_host","127.0.0.1","--functions_emulator_port",5001],"optionalArgs":["port","host","functions_emulator_port","functions_emulator_host","single_project_mode"],"joinArgs":false} {"metadata":{"emulator":{"name":"database"},"message":"Starting Database Emulator with command {\"binary\":\"java\",\"args\":[\"-Duser.language=en\",\"-jar\",\"C:\\\\Users\\\\vkksi\\\\.cache\\\\firebase\\\\emulators\\\\firebase-database-emulator-v4.11.0.jar\",\"--host\",\"127.0.0.1\",\"--port\",9000,\"--single_project_mode\",\"Warning\",\"--functions_emulator_host\",\"127.0.0.1\",\"--functions_emulator_port\",5001],\"optionalArgs\":[\"port\",\"host\",\"functions_emulator_port\",\"functions_emulator_host\",\"single_project_mode\"],\"joinArgs\":false}"}}
+[info] i  database: Database Emulator logging to database-debug.log {"metadata":{"emulator":{"name":"database"},"message":"Database Emulator logging to \u001b[1mdatabase-debug.log\u001b[22m"}}
+[debug] [2023-11-24T01:53:41.784Z] Ignoring unsupported arg: port {"metadata":{"emulator":{"name":"storage"},"message":"Ignoring unsupported arg: port"}}
+[debug] [2023-11-24T01:53:42.773Z] Temp file directory for storage emulator: C:\Users\vkksi\AppData\Local\Temp/firebase/storage/blobs {"metadata":{"emulator":{"name":"storage"},"message":"Temp file directory for storage emulator: C:\\Users\\vkksi\\AppData\\Local\\Temp/firebase/storage/blobs"}}
+[debug] [2023-11-24T01:53:42.783Z] >>> [apiv2][query] GET https://firebasehosting.googleapis.com/v1beta1/projects/e-shop-f05c0/sites 
+[debug] [2023-11-24T01:53:46.934Z] <<< [apiv2][status] GET https://firebasehosting.googleapis.com/v1beta1/projects/e-shop-f05c0/sites 200
+[debug] [2023-11-24T01:53:46.934Z] <<< [apiv2][body] GET https://firebasehosting.googleapis.com/v1beta1/projects/e-shop-f05c0/sites {"sites":[{"name":"projects/e-shop-f05c0/sites/e-shop-f05c0","defaultUrl":"https://e-shop-f05c0.web.app","type":"DEFAULT_SITE"}]}
+[debug] [2023-11-24T01:53:46.934Z] >>> [apiv2][query] GET https://firebase.googleapis.com/v1beta1/projects/e-shop-f05c0/webApps/-/config [none]
+[debug] [2023-11-24T01:53:48.464Z] <<< [apiv2][status] GET https://firebase.googleapis.com/v1beta1/projects/e-shop-f05c0/webApps/-/config 200
+[debug] [2023-11-24T01:53:48.464Z] <<< [apiv2][body] GET https://firebase.googleapis.com/v1beta1/projects/e-shop-f05c0/webApps/-/config {"projectId":"e-shop-f05c0","appId":"1:141282146145:web:acb99b5944e48e0d523720","databaseURL":"https://e-shop-f05c0-default-rtdb.asia-southeast1.firebasedatabase.app","storageBucket":"e-shop-f05c0.appspot.com","locationId":"asia-east2","apiKey":"AIzaSyCCbvBIBadSdRMKfrmO8zghg-LhrSoFNws","authDomain":"e-shop-f05c0.firebaseapp.com","messagingSenderId":"141282146145","measurementId":"G-B8W1LLL7L0"}
+[debug] [2023-11-24T01:53:48.476Z] >>> [apiv2][query] GET https://firebase.googleapis.com/v1beta1/projects/e-shop-f05c0 [none]
+[debug] [2023-11-24T01:53:49.044Z] <<< [apiv2][status] GET https://firebase.googleapis.com/v1beta1/projects/e-shop-f05c0 200
+[debug] [2023-11-24T01:53:49.044Z] <<< [apiv2][body] GET https://firebase.googleapis.com/v1beta1/projects/e-shop-f05c0 {"projectId":"e-shop-f05c0","projectNumber":"141282146145","displayName":"e-shop","name":"projects/e-shop-f05c0","resources":{"hostingSite":"e-shop-f05c0","realtimeDatabaseInstance":"e-shop-f05c0-default-rtdb","storageBucket":"e-shop-f05c0.appspot.com","locationId":"asia-east2"},"state":"ACTIVE","etag":"1_372a0ea8-cb8e-4e08-9ebb-ccc5f0287b93"}
+[debug] [2023-11-24T01:53:49.045Z] Specified "public" directory "build" does not exist; Deploy to Hosting site "e-shop-f05c0" may fail or be empty.
+[info] i  hosting[e-shop-f05c0]: Serving hosting files from: build {"metadata":{"emulator":{"name":"hosting"},"message":"Serving hosting files from: \u001b[1mbuild\u001b[22m"}}
+[info] +  hosting[e-shop-f05c0]: Local server: http://127.0.0.1:5000 {"metadata":{"emulator":{"name":"hosting"},"message":"Local server: \u001b[4m\u001b[1mhttp://127.0.0.1:5000\u001b[22m\u001b[24m"}}
+[debug] [2023-11-24T01:53:49.107Z] Ignoring unsupported arg: auto_download {"metadata":{"emulator":{"name":"ui"},"message":"Ignoring unsupported arg: auto_download"}}
+[debug] [2023-11-24T01:53:49.107Z] Ignoring unsupported arg: port {"metadata":{"emulator":{"name":"ui"},"message":"Ignoring unsupported arg: port"}}
+[debug] [2023-11-24T01:53:49.107Z] Starting Emulator UI with command {"binary":"node","args":["C:\\Users\\vkksi\\.cache\\firebase\\emulators\\ui-v1.11.4\\server\\server.js"],"optionalArgs":[],"joinArgs":false} {"metadata":{"emulator":{"name":"ui"},"message":"Starting Emulator UI with command {\"binary\":\"node\",\"args\":[\"C:\\\\Users\\\\vkksi\\\\.cache\\\\firebase\\\\emulators\\\\ui-v1.11.4\\\\server\\\\server.js\"],\"optionalArgs\":[],\"joinArgs\":false}"}}
+[info] i  ui: Emulator UI logging to ui-debug.log {"metadata":{"emulator":{"name":"ui"},"message":"Emulator UI logging to \u001b[1mui-debug.log\u001b[22m"}}
+[debug] [2023-11-24T01:53:49.418Z] Web / API server started at 127.0.0.1:4000
+ {"metadata":{"emulator":{"name":"ui"},"message":"Web / API server started at 127.0.0.1:4000\n"}}
+[debug] [2023-11-24T01:53:49.419Z] Web / API server started at ::1:4000
+ {"metadata":{"emulator":{"name":"ui"},"message":"Web / API server started at ::1:4000\n"}}
+[info] i  functions: Watching "D:\e-shop\functions" for Cloud Functions... {"metadata":{"emulator":{"name":"functions"},"message":"Watching \"D:\\e-shop\\functions\" for Cloud Functions..."}}
+[debug] [2023-11-24T01:53:49.649Z] Customer code is not Node
+[debug] [2023-11-24T01:53:49.650Z] Customer code is not Python code.
+[error] !!  functions: Failed to load function definition from source: FirebaseError: Could not detect language for functions at D:\e-shop\functions {"metadata":{"emulator":{"name":"functions"},"message":"Failed to load function definition from source: FirebaseError: Could not detect language for functions at D:\\e-shop\\functions"}}
+[debug] [2023-11-24T01:53:49.654Z] >>> [apiv2][query] PUT http://127.0.0.1:9000/.settings/rules.json ns=e-shop-f05c0-default-rtdb
+[debug] [2023-11-24T01:53:49.654Z] >>> [apiv2][body] PUT http://127.0.0.1:9000/.settings/rules.json "{\n  \"rules\": {\n    \".read\": false,\n    \".write\": false\n  }\n}"
+[debug] [2023-11-24T01:53:50.770Z] <<< [apiv2][status] PUT http://127.0.0.1:9000/.settings/rules.json 200
+[debug] [2023-11-24T01:53:50.770Z] <<< [apiv2][body] PUT http://127.0.0.1:9000/.settings/rules.json {"status":"ok"}
+[info] 
+┌─────────────────────────────────────────────────────────────┐
+│ ✔  All emulators ready! It is now safe to connect your app. │
+│ i  View Emulator UI at http://127.0.0.1:4000/               │
+└─────────────────────────────────────────────────────────────┘
+
+┌────────────────┬────────────────┬─────────────────────────────────┐
+│ Emulator       │ Host:Port      │ View in Emulator UI             │
+├────────────────┼────────────────┼─────────────────────────────────┤
+│ Authentication │ 127.0.0.1:9099 │ http://127.0.0.1:4000/auth      │
+├────────────────┼────────────────┼─────────────────────────────────┤
+│ Functions      │ 127.0.0.1:5001 │ http://127.0.0.1:4000/functions │
+├────────────────┼────────────────┼─────────────────────────────────┤
+│ Firestore      │ 127.0.0.1:8080 │ http://127.0.0.1:4000/firestore │
+├────────────────┼────────────────┼─────────────────────────────────┤
+│ Database       │ 127.0.0.1:9000 │ http://127.0.0.1:4000/database  │
+├────────────────┼────────────────┼─────────────────────────────────┤
+│ Hosting        │ 127.0.0.1:5000 │ n/a                             │
+├────────────────┼────────────────┼─────────────────────────────────┤
+│ Storage        │ 127.0.0.1:9199 │ http://127.0.0.1:4000/storage   │
+└────────────────┴────────────────┴─────────────────────────────────┘
+  Emulator Hub running at 127.0.0.1:4400
+  Other reserved ports: 4500, 9150
+
+Issues? Report them at https://github.com/firebase/firebase-tools/issues and attach the *-debug.log files.
+ 
+[debug] [2023-11-24T01:54:13.798Z] >>> [apiv2][query] POST http://127.0.0.1:5001/functions/projects/e-shop-f05c0/trigger_multicast [none]
+[debug] [2023-11-24T01:54:13.798Z] >>> [apiv2][body] POST http://127.0.0.1:5001/functions/projects/e-shop-f05c0/trigger_multicast {"eventId":"9ac6048b-42c0-4765-a99d-ea0315d00031","eventType":"providers/firebase.auth/eventTypes/user.create","resource":{"name":"projects/e-shop-f05c0","service":"firebaseauth.googleapis.com"},"params":{},"timestamp":"2023-11-24T01:54:13.797Z","data":{"uid":"Jfp7I24AE7XVsPq1NKfrBUTVuitW","email":"algae.algae.593@example.com","emailVerified":true,"displayName":"Algae Algae","metadata":{"creationTime":"2023-11-24T01:54:13.754Z","lastSignInTime":"2023-11-24T01:54:13.754Z"},"customClaims":{},"providerData":[{"providerId":"google.com","rawId":"1169995942954983398945005185124500694096","federatedId":"1169995942954983398945005185124500694096","displayName":"Algae Algae","email":"algae.algae.593@example.com","screenName":"algae_algae"}]}}
+[debug] [2023-11-24T01:54:13.823Z] <<< [apiv2][status] POST http://127.0.0.1:5001/functions/projects/e-shop-f05c0/trigger_multicast 200
+[debug] [2023-11-24T01:54:13.824Z] <<< [apiv2][body] POST http://127.0.0.1:5001/functions/projects/e-shop-f05c0/trigger_multicast {"status":"multicast_acknowledged"}
